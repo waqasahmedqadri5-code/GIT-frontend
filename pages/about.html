@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon-v2.svg">
+  <title>About Us – GIT</title>
+ 
+  <meta name="theme-color" content="#059669">
+  <link rel="stylesheet" href="../assets/fonts/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/sections.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    .page-hero { padding-top: calc(var(--nav-height) + var(--space-20)); padding-bottom: var(--space-20); background: var(--bg-secondary); }
+    .value-card { padding: var(--space-8); background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); transition: all var(--duration-base) var(--ease-out-expo); }
+    .value-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .value-icon { font-size: 36px; margin-bottom: var(--space-4); }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container navbar-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-mark">GIT</div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">Green Institute</span>
+        <span class="nav-logo-sub">of Technology</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../index.html#courses" class="nav-link">Courses</a>
+      <a href="teacher.html" class="nav-link">Teachers</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" aria-label="Toggle theme"><span class="icon-dark">🌙</span><span class="icon-light">☀️</span></button>
+      <button class="btn btn-primary btn-sm" onclick="window.location.href='../index.html'">Get Started</button>
+      <button class="nav-menu-btn"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile-drawer">
+  <nav class="mobile-nav-links">
+    <a href="../index.html" class="mobile-nav-link">🏠 Home</a>
+    <a href="../index.html#courses" class="mobile-nav-link">📚 Courses</a>
+    <a href="teachers.html" class="mobile-nav-link">👨‍🏫 Teachers</a>
+    <a href="contact.html" class="mobile-nav-link">📞 Contact</a>
+  </nav>
+</div>
+
+<!-- Hero -->
+<div class="page-hero">
+  <div class="container" style="text-align:center">
+    <div class="eyebrow reveal">Our Story</div>
+    <h1 class="text-display-lg reveal" style="max-width:700px;margin-inline:auto;margin-bottom:var(--space-5)">
+      Empowering Pakistan's Next Generation of <span class="text-gradient-warm">Tech Leaders</span>
+    </h1>
+    <p class="reveal" style="font-size:var(--text-lg);color:var(--text-secondary);max-width:600px;margin-inline:auto">
+      Since 2018, GIT has been on a mission to make world-class technology education accessible to every student in Pakistan.
+    </p>
+  </div>
+</div>
+
+<!-- Mission -->
+<section class="section" style="background:var(--bg-primary)">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16);align-items:center;max-width:960px;margin-inline:auto">
+      <div class="reveal-left">
+        <div class="eyebrow">Our Mission</div>
+        <h2 style="font-size:clamp(1.5rem,3vw,2.5rem);font-weight:800;margin-bottom:var(--space-5)">Technology Education, <span class="text-gradient-warm">Democratized</span></h2>
+        <p style="color:var(--text-secondary);line-height:var(--leading-relaxed);margin-bottom:var(--space-4)">
+          GIT was founded on a simple belief: every young person in Pakistan deserves access to the same quality technology education as students in Silicon Valley.
+        </p>
+        <p style="color:var(--text-secondary);line-height:var(--leading-relaxed)">
+          We combine rigorous academics with real-world industry experience, mentorship from working professionals, and hands-on project work to produce graduates who are truly job-ready.
+        </p>
+      </div>
+      <div class="reveal-right">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4)">
+          <div style="padding:var(--space-6);background:var(--bg-secondary);border-radius:var(--radius-xl);text-align:center">
+            <div style="font-family:var(--font-display);font-size:var(--text-4xl);font-weight:800;color:var(--accent-primary)"><span data-count="2400">0</span>+</div>
+            <div style="font-size:var(--text-sm);color:var(--text-secondary);margin-top:var(--space-1)">Graduates</div>
+          </div>
+          <div style="padding:var(--space-6);background:var(--bg-secondary);border-radius:var(--radius-xl);text-align:center">
+            <div style="font-family:var(--font-display);font-size:var(--text-4xl);font-weight:800;color:var(--accent-primary)"><span data-count="7">0</span>+</div>
+            <div style="font-size:var(--text-sm);color:var(--text-secondary);margin-top:var(--space-1)">Years</div>
+          </div>
+          <div style="padding:var(--space-6);background:var(--bg-secondary);border-radius:var(--radius-xl);text-align:center">
+            <div style="font-family:var(--font-display);font-size:var(--text-4xl);font-weight:800;color:var(--accent-primary)"><span data-count="9">0</span></div>
+            <div style="font-size:var(--text-sm);color:var(--text-secondary);margin-top:var(--space-1)">Courses</div>
+          </div>
+          <div style="padding:var(--space-6);background:var(--bg-secondary);border-radius:var(--radius-xl);text-align:center">
+            <div style="font-family:var(--font-display);font-size:var(--text-4xl);font-weight:800;color:var(--accent-primary)"><span data-count="97">0</span>%</div>
+            <div style="font-size:var(--text-sm);color:var(--text-secondary);margin-top:var(--space-1)">Placement</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values -->
+<section class="section" style="background:var(--bg-secondary)">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Our Values</div>
+      <h2 class="reveal">What We Stand For</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-5)">
+      <div class="value-card reveal"><div class="value-icon">🔬</div><h3 style="font-size:var(--text-lg);font-weight:700;margin-bottom:var(--space-2)">Innovation First</h3><p style="color:var(--text-secondary);font-size:var(--text-sm)">We constantly update our curriculum to reflect the latest industry developments and emerging technologies.</p></div>
+      <div class="value-card reveal"><div class="value-icon">🤝</div><h3 style="font-size:var(--text-lg);font-weight:700;margin-bottom:var(--space-2)">Student Success</h3><p style="color:var(--text-secondary);font-size:var(--text-sm)">Every decision we make is driven by one question: will this help our students succeed in their careers?</p></div>
+      <div class="value-card reveal"><div class="value-icon">🌍</div><h3 style="font-size:var(--text-lg);font-weight:700;margin-bottom:var(--space-2)">Accessibility</h3><p style="color:var(--text-secondary);font-size:var(--text-sm)">Technology education should be available to everyone regardless of their background or location.</p></div>
+      <div class="value-card reveal"><div class="value-icon">💯</div><h3 style="font-size:var(--text-lg);font-weight:700;margin-bottom:var(--space-2)">Quality</h3><p style="color:var(--text-secondary);font-size:var(--text-sm)">We never compromise on quality. Every course, lecture, and resource is held to the highest standards.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-orb cta-orb-1"></div>
+  <div class="cta-orb cta-orb-2"></div>
+  <div class="container cta-content">
+    <h2 class="cta-title reveal">Join the GIT Community</h2>
+    <p class="cta-subtitle reveal">Be part of Pakistan's fastest-growing tech education community.</p>
+    <div class="cta-buttons reveal">
+      <button class="btn btn-white btn-lg" onclick="window.location.href='../index.html'">🎓 Start Learning Today</button>
+      <a href="contact.html" class="btn btn-outline-white btn-lg">📞 Contact Admissions</a>
+    </div>
+  </div>
+</section>
+
+<footer style="background:var(--neutral-950);padding:var(--space-8) 0;text-align:center;color:rgba(255,255,255,0.4);font-size:var(--text-sm)">
+  <p>© 2025 Green Institute of Technology. <a href="../index.html" style="color:var(--emerald-400)">Return to Home</a></p>
+</footer>
+
+<div id="toast-container"></div>
+<script src="../js/app.js"></script>
+</body>
+</html>

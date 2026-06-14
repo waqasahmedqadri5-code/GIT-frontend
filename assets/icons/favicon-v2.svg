@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#047857"/>
+      <stop offset="50%"  stop-color="#059669"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="dropshadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2.5"/>
+      <feOffset dx="0" dy="2"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.35"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background rounded rect -->
+  <rect width="64" height="64" rx="13" fill="url(#grad1)" filter="url(#dropshadow)"/>
+
+  <!-- Glass shine overlay -->
+  <rect width="64" height="64" rx="13" fill="url(#shine)"/>
+
+  <!-- Subtle border -->
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="12.5" stroke="white" stroke-opacity="0.15" stroke-width="1.5" fill="none"/>
+
+  <!-- GIT Text — tight monogram -->
+  <!-- G -->
+  <text
+    x="32"
+    y="44"
+    font-family="'Georgia', 'Times New Roman', serif"
+    font-size="30"
+    font-weight="700"
+    fill="white"
+    text-anchor="middle"
+    letter-spacing="-1"
+    dominant-baseline="auto"
+  >GIT</text>
+
+  <!-- Accent underline bar -->
+  <rect x="14" y="48" width="36" height="2.5" rx="1.25" fill="white" opacity="0.35"/>
+</svg>

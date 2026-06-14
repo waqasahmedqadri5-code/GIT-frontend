@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Green Institute of Technology – Premium technology education for the future. Learn programming, networking, AI, graphic design, and more.">
+ <link rel="icon" type="image/svg+xml" href="assets/icons/favicon-v2.svg">
+  <meta name="theme-color" content="#059669">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="GIT – Green Institute of Technology">
+  <meta property="og:description" content="Premium technology education. 9 courses. 2,400+ graduates. 97% placement rate.">
+  <meta property="og:image" content="assets/images/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <title>GIT – Green Institute of Technology</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/loader.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<!-- Icon Sprite -->
+<div style="display:none"><object type="image/svg+xml" data="assets/icons/icons.svg"></object></div>
+<body class="page-home">
+
+<!-- ═══════════════════════════
+     SPLASH LOADER
+════════════════════════════ -->
+<div id="splash-loader">
+  <div class="splash-rings">
+    <div class="splash-ring splash-ring-1"></div>
+    <div class="splash-ring splash-ring-2"></div>
+    <div class="splash-ring splash-ring-3"></div>
+    <div class="splash-glow"></div>
+    <div class="splash-logo">GIT</div>
+  </div>
+  <div class="splash-progress-bar">
+    <div class="splash-progress-fill"></div>
+  </div>
+  <div class="splash-text">Green Institute of Technology</div>
+</div>
+
+<!-- ═══════════════════════════
+     NAVBAR
+════════════════════════════ -->
+<nav id="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">GIT</div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">Green Institute</span>
+        <span class="nav-logo-sub">of Technology</span>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <a href="index.html"          class="nav-link active">Home</a>
+      <a href="pages/courses.html"  class="nav-link">Courses</a>
+      <a href="pages/teacher.html" class="nav-link">Teachers</a>
+      <a href="pages/about.html"    class="nav-link">About</a>
+      <a href="pages/contact.html"  class="nav-link">Contact</a>
+    </div>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <span class="icon-dark">🌙</span>
+        <span class="icon-light">☀️</span>
+      </button>
+      <button id="nav-signin" class="btn btn-secondary btn-sm">Sign In</button>
+      <button id="nav-signup" class="btn btn-primary btn-sm">Sign Up</button>
+      <button class="nav-menu-btn" aria-label="Open menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="nav-mobile-drawer">
+  <nav class="mobile-nav-links">
+    <a href="index.html"          class="mobile-nav-link">🏠 Home</a>
+    <a href="index.html#courses"  class="mobile-nav-link">📚 Courses</a>
+    <a href="pages/teachers.html" class="mobile-nav-link">👨‍🏫 Teachers</a>
+    <a href="pages/about.html"    class="mobile-nav-link">ℹ️ About</a>
+    <a href="pages/contact.html"  class="mobile-nav-link">📞 Contact</a>
+  </nav>
+  <div class="mobile-nav-actions">
+    <button id="mobile-signin" class="btn btn-secondary" onclick="GIT.Modal.openModal('modal-role-select')">Sign In</button>
+    <button class="btn btn-primary" onclick="GIT.Modal.openModal('modal-role-select')">Sign Up Free</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════
+     HERO SECTION
+════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-gradient"></div>
+    <div class="hero-bg-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+  </div>
+
+  <div class="container">
+    <div class="hero-layout">
+      <!-- Content -->
+      <div class="hero-content">
+        <div class="hero-badge reveal">
+          <span class="hero-badge-dot"></span>
+          Pakistan's Premier Tech Institute
+        </div>
+
+        <h1 class="hero-title reveal">
+          Transform Your Future<br>
+          Through <span class="highlight">Technology</span><br>
+          Education
+        </h1>
+
+        <p class="hero-subtitle reveal">
+          Join thousands of students building high-demand tech careers through industry-aligned courses, expert mentors, and hands-on project learning.
+        </p>
+
+        <div class="hero-actions reveal">
+          <button id="hero-explore" class="btn btn-primary btn-lg">
+            📚 Explore Courses
+          </button>
+          <button id="hero-start" class="btn btn-secondary btn-lg">
+            🚀 Start Learning
+          </button>
+        </div>
+
+        <div class="hero-stats stagger">
+          <div class="hero-stat reveal">
+            <div class="hero-stat-value"><span data-count="2400">0</span>+</div>
+            <div class="hero-stat-label">Students</div>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat reveal">
+            <div class="hero-stat-value"><span data-count="9">0</span></div>
+            <div class="hero-stat-label">Courses</div>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat reveal">
+            <div class="hero-stat-value"><span data-count="97">0</span>%</div>
+            <div class="hero-stat-label">Placement</div>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat reveal">
+            <div class="hero-stat-value"><span data-count="4.9">0</span>⭐</div>
+            <div class="hero-stat-label">Rating</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="hero-visual hide-mobile">
+        <div class="hero-illustration">
+          <img 
+  src="assets/images/hero-illustration.svg" 
+  alt="GIT Learning Platform" 
+  style="width:100%;height:auto;display:block"
+>
+          <div class="hero-main-card">
+            <span class="hero-main-card-icon">🎓</span>
+            <div class="hero-main-card-text">GIT Campus</div>
+            <div class="hero-main-card-sub">Your Digital Learning Space</div>
+          </div>
+
+          <div class="hero-card-float hero-card-1">
+            <div class="hero-card-icon" style="background:var(--accent-light)">💻</div>
+            <div class="hero-card-text">
+              <div class="hero-card-title">9 Courses</div>
+              <div class="hero-card-sub">From 2 months to 3 years</div>
+            </div>
+          </div>
+
+          <div class="hero-card-float hero-card-2">
+            <div class="hero-card-icon" style="background:#dbeafe">🏆</div>
+            <div class="hero-card-text">
+              <div class="hero-card-title">Certified</div>
+              <div class="hero-card-sub">Industry-Recognized</div>
+            </div>
+          </div>
+
+          <div class="hero-card-float hero-card-3">
+            <div class="hero-card-icon" style="background:#fce7f3">📈</div>
+            <div class="hero-card-text">
+              <div class="hero-card-title">97% Placed</div>
+              <div class="hero-card-sub">Within 6 months</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar-wrapper reveal" style="margin-top:var(--space-8)">
+      <div class="search-input-wrapper">
+        <span class="search-icon">🔍</span>
+        <input id="hero-search" type="text" class="search-input" placeholder="Search courses, topics, skills…" autocomplete="off">
+      </div>
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════
+     CHOOSE YOUR ROLE
+════════════════════════════ -->
+<section class="section-roles section" id="roles">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Get Started</div>
+      <h2 class="reveal">Who Are You Here As?</h2>
+      <p class="reveal">Choose your role to access a tailored experience designed specifically for you.</p>
+    </div>
+
+    <div class="roles-grid">
+      <div class="role-card reveal" id="role-teacher" onclick="GIT.Modal.openModal('modal-teacher-auth')">
+        <span class="role-card-icon">👨‍🏫</span>
+        <h3 class="role-card-title">I'm a Teacher</h3>
+        <p class="role-card-desc">Upload lectures, manage your courses, track student progress, and build your teaching portfolio.</p>
+        <button class="btn btn-secondary" style="width:100%">Continue as Teacher →</button>
+      </div>
+
+      <div class="role-card reveal" id="role-student" onclick="GIT.Modal.openModal('modal-student-auth')">
+        <span class="role-card-icon">👨‍🎓</span>
+        <h3 class="role-card-title">I'm a Student</h3>
+        <p class="role-card-desc">Enroll in courses, watch lectures, track your progress, and earn industry-recognized certificates.</p>
+        <button class="btn btn-primary" style="width:100%">Continue as Student →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════
+     WHY CHOOSE GIT
+════════════════════════════ -->
+<section class="section" id="why-git" style="background:var(--bg-primary)">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Why GIT</div>
+      <h2 class="reveal">Education Built for the <span class="text-gradient-warm">Future</span></h2>
+      <p class="reveal">Everything you need to launch a successful technology career, all in one place.</p>
+    </div>
+
+    <div class="features-grid stagger">
+      <div class="feature-card reveal">
+        <div class="feature-icon">🏭</div>
+        <h3 class="feature-title">Industry-Relevant Courses</h3>
+        <p class="feature-desc">Curriculum designed with industry partners to match what employers actually need right now.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🛠️</div>
+        <h3 class="feature-title">Practical Learning</h3>
+        <p class="feature-desc">80% of your time is spent building real projects. No theory-only lectures. Learn by doing.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">👩‍💼</div>
+        <h3 class="feature-title">Expert Teachers</h3>
+        <p class="feature-desc">Learn from professionals with 5+ years of real industry experience in their fields.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">💼</div>
+        <h3 class="feature-title">Career Development</h3>
+        <p class="feature-desc">Dedicated career support with CV reviews, interview prep, and employer connections.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🌐</div>
+        <h3 class="feature-title">Online Learning</h3>
+        <p class="feature-desc">Access all course materials, lectures, and resources online from anywhere, anytime.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">⏰</div>
+        <h3 class="feature-title">Flexible Access</h3>
+        <p class="feature-desc">Learn at your own pace with on-demand video content and lifetime access to course materials.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════
+     POPULAR COURSES
+════════════════════════════ -->
+<section class="section" id="courses" style="background:var(--bg-secondary)">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Our Programs</div>
+      <h2 class="reveal">Courses Designed for <span class="text-gradient-warm">Real Careers</span></h2>
+      <p class="reveal">From 2-month certificates to 3-year diplomas — find the program that fits your goals.</p>
+    </div>
+
+    <div class="courses-filter reveal">
+      <button class="filter-btn active" data-filter="all">All Courses</button>
+      <button class="filter-btn" data-filter="programming">Programming</button>
+      <button class="filter-btn" data-filter="networking">Networking</button>
+      <button class="filter-btn" data-filter="ai">AI & ML</button>
+      <button class="filter-btn" data-filter="design">Design</button>
+      <button class="filter-btn" data-filter="digital">Digital Marketing</button>
+      <button class="filter-btn" data-filter="general">General IT</button>
+    </div>
+
+    <div class="courses-grid stagger" id="courses-grid">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════
+     LEARNING JOURNEY TIMELINE
+════════════════════════════ -->
+<section class="section" id="journey" style="background:var(--bg-primary)">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Your Journey</div>
+      <h2 class="reveal">From Enrollment to <span class="text-gradient-warm">Career</span></h2>
+      <p class="reveal">A structured path from beginner to professional. Every step is designed to get you ready.</p>
+    </div>
+
+    <div class="timeline-wrapper">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-step reveal">
+        <div class="timeline-node">🎯</div>
+        <div class="timeline-content">
+          <h3 class="timeline-step-title">Enroll</h3>
+          <p class="timeline-step-desc">Choose your course, create an account, and join your first class. Setup takes minutes.</p>
+        </div>
+      </div>
+
+      <div class="timeline-step reveal">
+        <div class="timeline-node">📖</div>
+        <div class="timeline-content">
+          <h3 class="timeline-step-title">Learn</h3>
+          <p class="timeline-step-desc">Watch expert-led video lectures, read materials, and follow structured learning paths.</p>
+        </div>
+      </div>
+
+      <div class="timeline-step reveal">
+        <div class="timeline-node">💻</div>
+        <div class="timeline-content">
+          <h3 class="timeline-step-title">Practice</h3>
+          <p class="timeline-step-desc">Apply concepts with hands-on labs, coding exercises, and real-world scenarios.</p>
+        </div>
+      </div>
+
+      <div class="timeline-step reveal">
+        <div class="timeline-node">🏗️</div>
+        <div class="timeline-content">
+          <h3 class="timeline-step-title">Build Projects</h3>
+          <p class="timeline-step-desc">Complete capstone projects that demonstrate your skills to future employers.</p>
+        </div>
+      </div>
+
+      <div class="timeline-step reveal">
+        <div class="timeline-node">🎓</div>
+        <div class="timeline-content">
+          <h3 class="timeline-step-title">Earn Certificate</h3>
+          <p class="timeline-step-desc">Receive your industry-recognized GIT certificate upon successful course completion.</p>
+        </div>
+      </div>
+
+      <div class="timeline-step reveal">
+        <div class="timeline-node">🚀</div>
+        <div class="timeline-content">
+          <h3 class="timeline-step-title">Start Career</h3>
+          <p class="timeline-step-desc">Launch your tech career with our career support, job board access, and alumni network.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════
+     TEACHER SPOTLIGHT
+════════════════════════════ -->
+<section class="section" id="teachers" style="background:var(--bg-secondary)">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Our Faculty</div>
+      <h2 class="reveal">Learn from <span class="text-gradient-warm">Industry Experts</span></h2>
+      <p class="reveal">Our instructors are active professionals who bring real-world experience to every lecture.</p>
+    </div>
+
+    <div class="teachers-grid stagger">
+      <div class="teacher-card reveal">
+        <div class="teacher-avatar">AK</div>
+        <h3 class="teacher-name">Ahmed Khan</h3>
+        <div class="teacher-expertise">Web Development</div>
+        <p class="teacher-bio">8 years experience as senior full-stack developer. Worked at top Pakistani tech companies building scalable web applications.</p>
+      </div>
+      <div class="teacher-card reveal">
+        <div class="teacher-avatar">SR</div>
+        <h3 class="teacher-name">Sara Rahim</h3>
+        <div class="teacher-expertise">AI & Machine Learning</div>
+        <p class="teacher-bio">PhD in Computer Science with specialization in Neural Networks. Research published in IEEE journals. Former Google AI researcher.</p>
+      </div>
+      <div class="teacher-card reveal">
+        <div class="teacher-avatar">MZ</div>
+        <h3 class="teacher-name">Muhammad Zubair</h3>
+        <div class="teacher-expertise">Networking & Security</div>
+        <p class="teacher-bio">Cisco Certified Instructor (CCSI) with 10+ years in enterprise network administration. Certified Ethical Hacker.</p>
+      </div>
+      <div class="teacher-card reveal">
+        <div class="teacher-avatar">FH</div>
+        <h3 class="teacher-name">Fatima Hassan</h3>
+        <div class="teacher-expertise">Graphic Design</div>
+        <p class="teacher-bio">Award-winning designer with 7 years in brand identity and digital media. Former Creative Director at top Karachi ad agency.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:var(--space-10)">
+      <a href="pages/teachers.html" class="btn btn-secondary btn-lg">View All Teachers →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════
+     TESTIMONIALS
+════════════════════════════ -->
+<section class="section" id="testimonials" style="background:var(--bg-primary)">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Success Stories</div>
+      <h2 class="reveal">Students Who <span class="text-gradient-warm">Transformed</span> Their Lives</h2>
+      <p class="reveal">Real stories from real graduates. Their success is our mission.</p>
+    </div>
+
+    <div class="testimonials-container">
+      <div class="testimonials-track" id="testimonials-track">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <div class="testimonials-controls">
+      <button id="testimonial-prev" class="btn btn-secondary btn-icon" aria-label="Previous">←</button>
+      <div class="testimonials-dots" id="testimonials-dots"></div>
+      <button id="testimonial-next" class="btn btn-secondary btn-icon" aria-label="Next">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════
+     CTA SECTION
+════════════════════════════ -->
+<section class="cta-section" id="cta">
+  <div class="cta-orb cta-orb-1"></div>
+  <div class="cta-orb cta-orb-2"></div>
+  <div class="container cta-content">
+    <h2 class="cta-title reveal">Start Your Technology Journey Today</h2>
+    <p class="cta-subtitle reveal">Join 2,400+ students who are already building the future. Your next chapter starts here.</p>
+    <div class="cta-buttons reveal">
+      <button id="cta-join-student" class="btn btn-white btn-lg">🎓 Join as Student</button>
+      <button id="cta-join-teacher" class="btn btn-outline-white btn-lg">👨‍🏫 Join as Teacher</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════
+     FOOTER
+════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-mark">GIT</div>
+          <div class="footer-logo-text">Green Institute of Technology</div>
+        </div>
+        <p class="footer-brand-desc">Pakistan's premier technology institute. Empowering the next generation of tech professionals through world-class education.</p>
+        <div class="footer-social">
+          <a class="footer-social-btn" href="#" aria-label="Facebook">📘</a>
+          <a class="footer-social-btn" href="#" aria-label="Instagram">📸</a>
+          <a class="footer-social-btn" href="#" aria-label="LinkedIn">💼</a>
+          <a class="footer-social-btn" href="#" aria-label="YouTube">▶️</a>
+          <a class="footer-social-btn" href="#" aria-label="Twitter">🐦</a>
+        </div>
+      </div>
+
+      <!-- Courses -->
+      <div>
+        <div class="footer-col-title">Courses</div>
+        <div class="footer-links">
+          <a class="footer-link" href="courses/course-detail.html?id=gcp">GCP – Green Certified Programmer</a>
+          <a class="footer-link" href="courses/course-detail.html?id=cit">CIT – Cert. in Information Technology</a>
+          <a class="footer-link" href="courses/course-detail.html?id=ccna">CCNA – Cisco Certification</a>
+          <a class="footer-link" href="courses/course-detail.html?id=adse">ADSE – Diploma in Software Eng.</a>
+          <a class="footer-link" href="courses/course-detail.html?id=ai">AI – Artificial Intelligence</a>
+          <a class="footer-link" href="courses/course-detail.html?id=ml">ML – Machine Learning</a>
+          <a class="footer-link" href="courses/course-detail.html?id=gd">Graphic Designing</a>
+          <a class="footer-link" href="courses/course-detail.html?id=seo">SEO – Digital Marketing</a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <div class="footer-links">
+          <a class="footer-link" href="index.html">Home</a>
+          <a class="footer-link" href="pages/about.html">About GIT</a>
+          <a class="footer-link" href="pages/teachers.html">Our Teachers</a>
+          <a class="footer-link" href="pages/contact.html">Contact Us</a>
+          <a class="footer-link" href="#" onclick="GIT.Modal.openModal('modal-student-auth')">Student Login</a>
+          <a class="footer-link" href="#" onclick="GIT.Modal.openModal('modal-teacher-auth')">Teacher Login</a>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">📍</span>
+          <span>Main Campus, Technology District, Karachi, Sindh, Pakistan</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">📞</span>
+          <span>+92 21 123 4567<br>+92 300 987 6543</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">✉️</span>
+          <span>info@git.edu.pk<br>admissions@git.edu.pk</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">🕐</span>
+          <span>Mon – Sat: 8am – 8pm<br>Sunday: Closed</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-bottom-text">© 2025 Green Institute of Technology. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a class="footer-bottom-link" href="#">Privacy Policy</a>
+        <a class="footer-bottom-link" href="#">Terms of Use</a>
+        <a class="footer-bottom-link" href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════
+     MODAL: ROLE SELECT
+════════════════════════════ -->
+<div class="modal-overlay" id="modal-role-select">
+  <div class="modal">
+    <button class="modal-close" data-modal-close>✕</button>
+    <div class="modal-header">
+      <div class="modal-logo">GIT</div>
+      <h2 class="modal-title">Welcome to GIT</h2>
+      <p class="modal-subtitle">Choose how you'd like to continue</p>
+    </div>
+    <div class="modal-body">
+      <div style="display:flex;flex-direction:column;gap:var(--space-4)">
+        <button class="btn btn-secondary" style="padding:var(--space-5);font-size:var(--text-base);justify-content:flex-start;gap:var(--space-4)" onclick="GIT.Modal.closeAll();GIT.Modal.openModal('modal-teacher-auth')">
+          <span style="font-size:28px">👨‍🏫</span>
+          <div style="text-align:left">
+            <div style="font-weight:700">Continue as Teacher</div>
+            <div style="font-size:var(--text-xs);color:var(--text-tertiary);font-weight:400">Upload & manage lectures</div>
+          </div>
+        </button>
+        <button class="btn btn-primary" style="padding:var(--space-5);font-size:var(--text-base);justify-content:flex-start;gap:var(--space-4)" onclick="GIT.Modal.closeAll();GIT.Modal.openModal('modal-student-auth')">
+          <span style="font-size:28px">👨‍🎓</span>
+          <div style="text-align:left">
+            <div style="font-weight:700">Continue as Student</div>
+            <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.75);font-weight:400">Enroll & watch lectures</div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════
+     MODAL: TEACHER AUTH
+════════════════════════════ -->
+<div class="modal-overlay" id="modal-teacher-auth">
+  <div class="modal modal-wide">
+    <button class="modal-close" data-modal-close>✕</button>
+    <div class="modal-header">
+      <div class="modal-logo">👨‍🏫</div>
+      <h2 class="modal-title">Teacher Portal</h2>
+      <p class="modal-subtitle">Sign in to manage your courses</p>
+    </div>
+
+    <div class="modal-tabs">
+      <div class="modal-tab active" data-tab="signin">Sign In</div>
+      <div class="modal-tab" data-tab="signup">Sign Up</div>
+    </div>
+
+    <div class="modal-body">
+      <!-- Sign In -->
+      <form class="modal-form form-tab-content active" id="teacher-signin-form" data-tab-content="signin" novalidate>
+        <div class="input-group">
+          <label>Email Address</label>
+          <input name="email" type="email" class="input-field" placeholder="your@email.com" data-validate="required,email">
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input name="password" type="password" class="input-field" placeholder="••••••••" data-validate="required">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;padding:var(--space-4)">Sign In as Teacher</button>
+        <div class="modal-divider">or</div>
+        <button type="button" id="demo-teacher-btn" class="btn-demo">⚡ Use Demo Teacher Account</button>
+      </form>
+
+      <!-- Sign Up -->
+      <form class="modal-form form-tab-content" id="teacher-signup-form" data-tab-content="signup" novalidate>
+        <div class="form-row">
+          <div class="input-group">
+            <label>First Name</label>
+            <input name="firstName" type="text" class="input-field" placeholder="Ahmed" data-validate="required">
+          </div>
+          <div class="input-group">
+            <label>Last Name</label>
+            <input name="lastName" type="text" class="input-field" placeholder="Khan" data-validate="required">
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Email Address</label>
+          <input name="email" type="email" class="input-field" placeholder="your@email.com" data-validate="required,email">
+        </div>
+        <div class="input-group">
+          <label>Phone Number</label>
+          <input name="phone" type="tel" class="input-field" placeholder="+92 300 1234567" data-validate="required,phone">
+        </div>
+        <div class="input-group">
+          <label>Qualification</label>
+          <input name="qualification" type="text" class="input-field" placeholder="e.g. M.Sc Computer Science" data-validate="required">
+        </div>
+        <div class="input-group">
+          <label>Specialization</label>
+          <input name="specialization" type="text" class="input-field" placeholder="e.g. Web Development, AI" data-validate="required">
+        </div>
+        <div class="form-row">
+          <div class="input-group">
+            <label>Password</label>
+            <input name="password" type="password" id="teacher-pass" class="input-field" placeholder="••••••••" data-validate="required">
+          </div>
+          <div class="input-group">
+            <label>Confirm Password</label>
+            <input name="confirmPassword" type="password" class="input-field" placeholder="••••••••" data-validate="required">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;padding:var(--space-4)">Create Teacher Account</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════
+     MODAL: STUDENT AUTH
+════════════════════════════ -->
+<div class="modal-overlay" id="modal-student-auth">
+  <div class="modal modal-wide">
+    <button class="modal-close" data-modal-close>✕</button>
+    <div class="modal-header">
+      <div class="modal-logo">🎓</div>
+      <h2 class="modal-title">Student Portal</h2>
+      <p class="modal-subtitle">Sign in to access your courses</p>
+    </div>
+
+    <div class="modal-tabs">
+      <div class="modal-tab active" data-tab="signin">Sign In</div>
+      <div class="modal-tab" data-tab="signup">Sign Up</div>
+    </div>
+
+    <div class="modal-body">
+      <!-- Sign In -->
+      <form class="modal-form form-tab-content active" id="student-signin-form" data-tab-content="signin" novalidate>
+        <div class="input-group">
+          <label>Email Address</label>
+          <input name="email" type="email" class="input-field" placeholder="your@email.com" data-validate="required,email">
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input name="password" type="password" class="input-field" placeholder="••••••••" data-validate="required">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;padding:var(--space-4)">Sign In as Student</button>
+        <div class="modal-divider">or</div>
+        <button type="button" id="demo-student-btn" class="btn-demo">⚡ Use Demo Student Account</button>
+      </form>
+
+      <!-- Sign Up -->
+      <form class="modal-form form-tab-content" id="student-signup-form" data-tab-content="signup" novalidate>
+        <div class="form-row">
+          <div class="input-group">
+            <label>First Name</label>
+            <input name="firstName" type="text" class="input-field" placeholder="Sara" data-validate="required">
+          </div>
+          <div class="input-group">
+            <label>Last Name</label>
+            <input name="lastName" type="text" class="input-field" placeholder="Ali" data-validate="required">
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Father's Name</label>
+          <input name="fatherName" type="text" class="input-field" placeholder="Muhammad Ali" data-validate="required">
+        </div>
+        <div class="input-group">
+          <label>Email Address</label>
+          <input name="email" type="email" class="input-field" placeholder="your@email.com" data-validate="required,email">
+        </div>
+        <div class="form-row">
+          <div class="input-group">
+            <label>Phone Number</label>
+            <input name="phone" type="tel" class="input-field" placeholder="+92 311 9876543" data-validate="required,phone">
+          </div>
+          <div class="input-group">
+            <label>Date of Birth</label>
+            <input name="dob" type="date" class="input-field" data-validate="required">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-group">
+            <label>Gender</label>
+            <select name="gender" class="input-field" data-validate="required">
+              <option value="">Select gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Course Selection</label>
+            <select name="course" class="input-field" data-validate="required">
+              <option value="">Select a course</option>
+              <option value="GCP">GCP – Green Certified Programmer</option>
+              <option value="CIT">CIT – Certificate in IT</option>
+              <option value="CCNA">CCNA – Cisco Network Associate</option>
+              <option value="ADSE">ADSE – Diploma in Software Eng.</option>
+              <option value="DITA">DITA – Diploma in IT Applications</option>
+              <option value="GD">GD – Graphic Designing</option>
+              <option value="SEO">SEO – Search Engine Optimization</option>
+              <option value="AI">AI – Artificial Intelligence</option>
+              <option value="ML">ML – Machine Learning</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-group">
+            <label>Password</label>
+            <input name="password" type="password" class="input-field" placeholder="••••••••" data-validate="required">
+          </div>
+          <div class="input-group">
+            <label>Confirm Password</label>
+            <input name="confirmPassword" type="password" class="input-field" placeholder="••••••••" data-validate="required">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;padding:var(--space-4)">Create Student Account</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div id="toast-container"></div>
+
+<script src="js/app.js"></script>
+<script src="js/utils/utilities.js"></script>
+<script src="js/utils/animations.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

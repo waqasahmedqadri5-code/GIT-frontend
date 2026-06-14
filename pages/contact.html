@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact GIT – Green Institute of Technology. Get in touch for admissions, courses, or general enquiries.">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon-v2.svg">
+  <title>Contact Us – GIT</title>
+  <meta name="theme-color" content="#059669">
+  <link rel="stylesheet" href="../assets/fonts/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/sections.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    .page-hero {
+      padding-top: calc(var(--nav-height) + var(--space-16));
+      padding-bottom: var(--space-16);
+      background: var(--bg-secondary);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(16,185,129,0.07), transparent);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: var(--space-10);
+      align-items: start;
+    }
+    @media (max-width: 1023px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-sidebar { order: -1; }
+    }
+
+    .contact-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-10);
+      box-shadow: var(--shadow-md);
+    }
+    @media (max-width: 640px) {
+      .contact-form-card { padding: var(--space-6); }
+    }
+
+    .contact-info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+    }
+    .contact-info-header {
+      background: linear-gradient(135deg, var(--emerald-800), var(--emerald-600));
+      padding: var(--space-8);
+    }
+    .contact-info-body { padding: var(--space-6); }
+
+    .contact-item {
+      display: flex;
+      gap: var(--space-4);
+      padding: var(--space-5);
+      border-radius: var(--radius-xl);
+      transition: background var(--duration-fast);
+      margin-bottom: var(--space-2);
+    }
+    .contact-item:hover { background: var(--bg-secondary); }
+    .contact-item-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--accent-light);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    [data-theme="dark"] .contact-item-icon { background: rgba(16,185,129,0.1); }
+    .contact-item-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+      margin-bottom: 3px;
+    }
+    .contact-item-value {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: var(--leading-relaxed);
+    }
+
+    /* Map placeholder */
+    .map-placeholder {
+      background: var(--bg-tertiary);
+      border-top: 1px solid var(--border-subtle);
+      padding: var(--space-6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      color: var(--text-tertiary);
+      flex-direction: column;
+      min-height: 140px;
+    }
+    .map-placeholder-icon { font-size: 36px; }
+
+    /* FAQ */
+    .faq-item {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      margin-bottom: var(--space-3);
+    }
+    .faq-question {
+      padding: var(--space-5) var(--space-6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: var(--text-sm);
+      color: var(--text-primary);
+      transition: background var(--duration-fast);
+      gap: var(--space-4);
+    }
+    .faq-question:hover { background: var(--bg-secondary); }
+    .faq-toggle {
+      font-size: 14px;
+      flex-shrink: 0;
+      transition: transform var(--duration-base) var(--ease-out-expo);
+      color: var(--accent-primary);
+    }
+    .faq-item.open .faq-toggle { transform: rotate(180deg); }
+    .faq-answer {
+      display: none;
+      padding: 0 var(--space-6) var(--space-5);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: var(--leading-relaxed);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: var(--space-4);
+    }
+    .faq-item.open .faq-answer { display: block; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container navbar-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-mark">GIT</div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">Green Institute</span>
+        <span class="nav-logo-sub">of Technology</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html"          class="nav-link">Home</a>
+      <a href="../index.html#courses"  class="nav-link">Courses</a>
+      <a href="teacher.html"          class="nav-link">Teachers</a>
+      <a href="about.html"             class="nav-link">About</a>
+      <a href="contact.html"           class="nav-link active">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <span class="icon-dark">🌙</span><span class="icon-light">☀️</span>
+      </button>
+      <button class="btn btn-secondary btn-sm" onclick="window.location.href='../index.html'">Sign In</button>
+      <button class="btn btn-primary btn-sm" onclick="window.location.href='../index.html'">Enroll Now</button>
+      <button class="nav-menu-btn">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile-drawer">
+  <nav class="mobile-nav-links">
+    <a href="../index.html"         class="mobile-nav-link">🏠 Home</a>
+    <a href="../index.html#courses" class="mobile-nav-link">📚 Courses</a>
+    <a href="teachers.html"         class="mobile-nav-link">👨‍🏫 Teachers</a>
+    <a href="about.html"            class="mobile-nav-link">ℹ️ About</a>
+    <a href="contact.html"          class="mobile-nav-link active">📞 Contact</a>
+  </nav>
+  <div class="mobile-nav-actions">
+    <button class="btn btn-primary" onclick="window.location.href='../index.html'">Get Started</button>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container" style="position:relative">
+    <div class="eyebrow reveal">Get in Touch</div>
+    <h1 class="text-display-lg reveal" style="margin-bottom:var(--space-4)">
+      We'd Love to <span class="text-gradient-warm">Hear from You</span>
+    </h1>
+    <p class="text-body-lg reveal" style="color:var(--text-secondary);max-width:520px;margin-inline:auto">
+      Questions about admissions, courses, or anything else? Our team responds within 24 hours.
+    </p>
+  </div>
+</div>
+
+<!-- CONTACT SECTION -->
+<section class="section" style="background:var(--bg-primary)">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- FORM -->
+      <div class="contact-form-card reveal-left">
+        <h2 style="font-size:var(--text-2xl);font-weight:800;font-family:var(--font-display);margin-bottom:var(--space-2)">Send us a Message</h2>
+        <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-8)">Fill the form below and we'll get back to you within 24 hours.</p>
+
+        <form id="contact-form" novalidate style="display:flex;flex-direction:column;gap:var(--space-5)">
+          <div class="form-row">
+            <div class="input-group">
+              <label>First Name *</label>
+              <input name="firstName" type="text" class="input-field" placeholder="Ahmed" data-validate="required">
+            </div>
+            <div class="input-group">
+              <label>Last Name *</label>
+              <input name="lastName" type="text" class="input-field" placeholder="Khan" data-validate="required">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Email Address *</label>
+            <input name="email" type="email" class="input-field" placeholder="ahmed@example.com" data-validate="required,email">
+          </div>
+
+          <div class="input-group">
+            <label>Phone Number</label>
+            <input name="phone" type="tel" class="input-field" placeholder="+92 300 1234567">
+          </div>
+
+          <div class="input-group">
+            <label>Subject *</label>
+            <select name="subject" class="input-field" data-validate="required">
+              <option value="">Select a subject</option>
+              <option value="admissions">Admissions Inquiry</option>
+              <option value="course">Course Information</option>
+              <option value="fees">Fees & Payment</option>
+              <option value="teacher">Become a Teacher</option>
+              <option value="technical">Technical Support</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Message *</label>
+            <textarea name="message" class="input-field" rows="5"
+              placeholder="Tell us what you'd like to know..." data-validate="required"
+              style="resize:vertical"></textarea>
+          </div>
+
+          <!-- Preferred contact -->
+          <div class="input-group">
+            <label>Preferred Contact Method</label>
+            <div style="display:flex;gap:var(--space-4);flex-wrap:wrap">
+              <label style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);font-weight:500;cursor:pointer;color:var(--text-secondary)">
+                <input type="radio" name="contact_method" value="email" checked style="accent-color:var(--accent-primary)"> Email
+              </label>
+              <label style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);font-weight:500;cursor:pointer;color:var(--text-secondary)">
+                <input type="radio" name="contact_method" value="phone" style="accent-color:var(--accent-primary)"> Phone
+              </label>
+              <label style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);font-weight:500;cursor:pointer;color:var(--text-secondary)">
+                <input type="radio" name="contact_method" value="whatsapp" style="accent-color:var(--accent-primary)"> WhatsApp
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" id="contact-submit">
+            Send Message 📨
+          </button>
+        </form>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="contact-sidebar reveal-right">
+        <!-- Contact Info Card -->
+        <div class="contact-info-card">
+          <div class="contact-info-header">
+            <h3 style="font-family:var(--font-display);font-weight:800;font-size:var(--text-xl);color:white;margin-bottom:var(--space-1)">Contact Information</h3>
+            <p style="color:rgba(255,255,255,0.7);font-size:var(--text-sm)">Reach us through any of these channels</p>
+          </div>
+          <div class="contact-info-body">
+            <div class="contact-item">
+              <div class="contact-item-icon">📍</div>
+              <div>
+                <div class="contact-item-label">Address</div>
+                <div class="contact-item-value">Main Campus, Technology District<br>Karachi, Sindh 75500, Pakistan</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">📞</div>
+              <div>
+                <div class="contact-item-label">Phone</div>
+                <div class="contact-item-value">+92 21 123 4567<br>+92 300 987 6543 (WhatsApp)</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">✉️</div>
+              <div>
+                <div class="contact-item-label">Email</div>
+                <div class="contact-item-value">info@git.edu.pk<br>admissions@git.edu.pk</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">🕐</div>
+              <div>
+                <div class="contact-item-label">Office Hours</div>
+                <div class="contact-item-value">Mon – Fri: 8:00 AM – 8:00 PM<br>Saturday: 9:00 AM – 5:00 PM<br>Sunday: Closed</div>
+              </div>
+            </div>
+
+            <!-- Social Links -->
+            <div style="padding:var(--space-4) var(--space-5);border-top:1px solid var(--border-subtle);margin-top:var(--space-2)">
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-tertiary);margin-bottom:var(--space-3)">Follow Us</div>
+              <div style="display:flex;gap:var(--space-2)">
+                <a href="#" class="footer-social-btn" style="background:var(--bg-secondary);border:1px solid var(--border-subtle);color:var(--text-secondary)" aria-label="Facebook">📘</a>
+                <a href="#" class="footer-social-btn" style="background:var(--bg-secondary);border:1px solid var(--border-subtle);color:var(--text-secondary)" aria-label="Instagram">📸</a>
+                <a href="#" class="footer-social-btn" style="background:var(--bg-secondary);border:1px solid var(--border-subtle);color:var(--text-secondary)" aria-label="LinkedIn">💼</a>
+                <a href="#" class="footer-social-btn" style="background:var(--bg-secondary);border:1px solid var(--border-subtle);color:var(--text-secondary)" aria-label="YouTube">▶️</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map placeholder -->
+          <div class="map-placeholder">
+            <span class="map-placeholder-icon">🗺️</span>
+            <span style="font-weight:600;color:var(--text-secondary)">GIT Main Campus</span>
+            <span>Technology District, Karachi</span>
+            <a href="https://maps.google.com" target="_blank" class="btn btn-secondary btn-sm" style="margin-top:var(--space-2)">Open in Google Maps →</a>
+          </div>
+        </div>
+
+        <!-- Quick contact cards -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-top:var(--space-4)">
+          <a href="tel:+922112345678" style="padding:var(--space-4);background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);text-align:center;text-decoration:none;transition:all var(--duration-base);display:block" onmouseover="this.style.borderColor='var(--accent-primary)'" onmouseout="this.style.borderColor='var(--border-subtle)'">
+            <div style="font-size:24px;margin-bottom:var(--space-2)">📞</div>
+            <div style="font-size:var(--text-sm);font-weight:700;color:var(--text-primary)">Call Now</div>
+            <div style="font-size:11px;color:var(--text-tertiary)">+92 21 123 4567</div>
+          </a>
+          <a href="https://wa.me/923009876543" target="_blank" style="padding:var(--space-4);background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);text-align:center;text-decoration:none;transition:all var(--duration-base);display:block" onmouseover="this.style.borderColor='#25d366'" onmouseout="this.style.borderColor='var(--border-subtle)'">
+            <div style="font-size:24px;margin-bottom:var(--space-2)">💬</div>
+            <div style="font-size:var(--text-sm);font-weight:700;color:var(--text-primary)">WhatsApp</div>
+            <div style="font-size:11px;color:var(--text-tertiary)">Chat instantly</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="section" style="background:var(--bg-secondary)">
+  <div class="container" style="max-width:800px">
+    <div class="section-header">
+      <div class="eyebrow">FAQ</div>
+      <h2 class="reveal">Frequently Asked Questions</h2>
+      <p class="reveal">Can't find your answer here? Contact us directly.</p>
+    </div>
+
+    <div id="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          How do I enroll in a course at GIT?
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          Enrolling is simple! Create a free student account on our website by clicking "Sign Up" and selecting "Student". Fill in your details, select your course, and you're enrolled. Our admissions team will contact you within 24 hours with next steps.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Are your courses available online or only on campus?
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          GIT offers both online and campus learning. Video lectures are available online 24/7 through your student dashboard. Practical lab sessions and exams are held on campus. We also offer fully online options for students outside Karachi.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          What certifications will I receive after completing a course?
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          Upon successful completion, you receive a GIT Certificate of Completion. For specific courses like CCNA, we also prepare you for and facilitate external Cisco certifications. Our certificates are recognized by leading tech employers across Pakistan.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          What are the fee structures and payment options?
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          Fees vary by course duration and type. We offer flexible installment plans — monthly, quarterly, or full payment with a discount. Need-based scholarships are also available. Contact our admissions team at admissions@git.edu.pk for a detailed fee schedule.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Do you offer job placement assistance after graduation?
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          Absolutely! GIT's career support includes CV reviews, mock interviews, LinkedIn profile optimization, and direct employer connections through our corporate partner network. We maintain a job board exclusively for GIT graduates. Our placement rate is 97% within 6 months of graduation.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Can I apply to teach at GIT?
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          Yes! We're always looking for industry professionals to join our faculty. Requirements include 5+ years of industry experience in your field, relevant certifications, and a passion for teaching. Create a Teacher account or contact us at faculty@git.edu.pk with your CV.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          What is the minimum age requirement to enroll?
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          Most GIT courses are open to students aged 16 and above. For our advanced diploma programs (ADSE, CCNA), we recommend at least Intermediate (12th grade) education. Some short courses like Graphic Design and SEO have no academic prerequisites — just motivation to learn!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer mini -->
+<footer style="background:var(--neutral-950);padding:var(--space-8) 0;text-align:center;color:rgba(255,255,255,0.4);font-size:var(--text-sm)">
+  <p>© 2025 Green Institute of Technology &nbsp;·&nbsp; <a href="../index.html" style="color:var(--emerald-400)">Return to Home</a></p>
+</footer>
+
+<div id="toast-container"></div>
+<script src="../js/app.js"></script>
+<script>
+  // FAQ toggle
+  function toggleFAQ(el) {
+    const item = el.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+
+  // Contact form
+  document.getElementById('contact-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (!GIT.Validator.validateForm(this)) return;
+
+    const btn = document.getElementById('contact-submit');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Sending...';
+
+    setTimeout(() => {
+      GIT.Toast.success('Message sent! We\'ll reply within 24 hours. 📧');
+      this.reset();
+      btn.disabled = false;
+      btn.textContent = 'Send Message 📨';
+    }, 1200);
+  });
+</script>
+</body>
+</html>

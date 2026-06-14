@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon-v2.svg">
+  <title>Student Dashboard – GIT</title>
+  <link rel="stylesheet" href="../assets/fonts/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    .topbar-menu-btn { display:none!important; }
+
+    .topbar-avatar-btn {
+      width:40px;height:40px;
+      background:linear-gradient(135deg,var(--emerald-600),var(--emerald-400));
+      border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;
+      font-family:var(--font-display);font-weight:700;font-size:14px;color:white;
+      cursor:pointer;border:none;box-shadow:0 2px 8px rgba(16,185,129,0.35);
+      transition:all 0.2s;flex-shrink:0;position:relative;
+    }
+    .topbar-avatar-btn:hover { transform:scale(1.08);box-shadow:0 4px 14px rgba(16,185,129,0.45); }
+
+    .notif-badge {
+      position:absolute;top:-4px;right:-4px;
+      width:18px;height:18px;background:#ef4444;border-radius:50%;
+      font-size:10px;font-weight:700;color:white;
+      display:none;align-items:center;justify-content:center;
+      border:2px solid var(--bg-card);
+    }
+
+    .sidebar-backdrop {
+      display:none;position:fixed;inset:0;
+      background:rgba(0,0,0,0.45);backdrop-filter:blur(2px);
+      z-index:calc(var(--z-sticky) - 1);
+    }
+    .sidebar-backdrop.show { display:block; }
+
+    @media (max-width:1024px) {
+      .dashboard-main { margin-right:0!important; }
+    }
+    @media (max-width:768px) {
+      .dashboard-content { padding:var(--space-4) var(--space-3)!important; }
+      .stats-grid { grid-template-columns:1fr 1fr!important;gap:var(--space-3)!important; }
+      .stat-card { padding:var(--space-4)!important; }
+      .topbar-search { display:none!important; }
+    }
+    @media (max-width:480px) {
+      .stats-grid { grid-template-columns:1fr!important; }
+      .topbar-title { font-size:var(--text-base)!important; }
+    }
+    @media (min-width:1025px) {
+      .sidebar { transform:translateX(0)!important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+  <!-- ═══ MAIN (LEFT) ═══ -->
+  <main class="dashboard-main">
+    <header class="dashboard-topbar">
+      <div class="topbar-left">
+        <div class="topbar-title">My Dashboard</div>
+      </div>
+      <div class="topbar-search search-bar-wrapper">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input id="topbar-search-input" type="text" class="search-input"
+            placeholder="Search lectures, courses…" autocomplete="off">
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button class="topbar-avatar-btn" id="avatar-toggle-btn" data-user-avatar title="Open Menu">
+          WA
+          <span class="notif-badge" id="notif-badge">0</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="dashboard-content">
+
+      <!-- OVERVIEW -->
+      <div class="dash-section" data-section-name="overview">
+        <div style="margin-bottom:var(--space-6)">
+          <h1 style="font-size:clamp(1.25rem,3vw,1.75rem);font-weight:800;font-family:var(--font-display)">
+            Welcome back, <span data-user-name style="color:var(--accent-primary)">Student</span> 🎓
+          </h1>
+          <p style="color:var(--text-secondary);margin-top:var(--space-1);font-size:var(--text-sm)">
+            Continue your learning journey from where you left off.
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card-header"><div class="stat-card-icon">📚</div></div>
+            <div class="stat-card-value" id="stat-enrolled">0</div>
+            <div class="stat-card-label">Enrolled Courses</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header"><div class="stat-card-icon">▶️</div></div>
+            <div class="stat-card-value" id="stat-watched">0</div>
+            <div class="stat-card-label">Lectures Watched</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-card-icon">✅</div>
+              <div class="stat-card-trend up">Keep going!</div>
+            </div>
+            <div class="stat-card-value" id="stat-completed">0</div>
+            <div class="stat-card-label">Completed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header"><div class="stat-card-icon">🎬</div></div>
+            <div class="stat-card-value" id="stat-available">0</div>
+            <div class="stat-card-label">Available Lectures</div>
+          </div>
+        </div>
+
+        <div class="dashboard-panel">
+          <div class="panel-header">
+            <div class="panel-title">⏯ Continue Learning</div>
+            <button class="btn btn-ghost btn-sm" onclick="StudentDash.goSection('lectures')">Browse all →</button>
+          </div>
+          <div class="panel-body"><div id="recent-lectures"></div></div>
+        </div>
+
+        <div class="dashboard-panel">
+          <div class="panel-header"><div class="panel-title">📚 My Enrolled Courses</div></div>
+          <div class="panel-body"><div id="enrolled-courses"></div></div>
+        </div>
+      </div>
+
+      <!-- MY COURSES -->
+      <div class="dash-section" data-section-name="courses" style="display:none">
+        <div style="margin-bottom:var(--space-5)">
+          <h1 style="font-size:clamp(1.25rem,3vw,1.75rem);font-weight:800;font-family:var(--font-display)">My Courses 📚</h1>
+        </div>
+        <div class="dashboard-panel">
+          <div class="panel-body"><div id="enrolled-courses-2"></div></div>
+        </div>
+      </div>
+
+      <!-- BROWSE LECTURES -->
+      <div class="dash-section" data-section-name="lectures" style="display:none">
+        <div style="margin-bottom:var(--space-5)">
+          <h1 style="font-size:clamp(1.25rem,3vw,1.75rem);font-weight:800;font-family:var(--font-display)">Browse Lectures 🎬</h1>
+          <p style="color:var(--text-secondary);margin-top:var(--space-1);font-size:var(--text-sm)">Watch and track all available lectures.</p>
+        </div>
+        <div class="dashboard-panel">
+          <div class="panel-header">
+            <div class="panel-title">All Lectures</div>
+            <div class="search-bar-wrapper" style="max-width:240px;margin:0">
+              <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input id="lecture-search" type="text" class="search-input"
+                  placeholder="Search…" style="padding-block:var(--space-2);font-size:var(--text-sm)">
+              </div>
+            </div>
+          </div>
+          <div class="panel-body"><div id="available-lectures"></div></div>
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <div class="dash-section" data-section-name="profile" style="display:none">
+        <div style="margin-bottom:var(--space-5)">
+          <h1 style="font-size:clamp(1.25rem,3vw,1.75rem);font-weight:800;font-family:var(--font-display)">My Profile 👤</h1>
+        </div>
+        <div class="dashboard-panel" style="max-width:560px">
+          <div class="panel-body">
+            <div style="display:flex;align-items:center;gap:var(--space-4);margin-bottom:var(--space-6);
+              padding-bottom:var(--space-6);border-bottom:1px solid var(--border-subtle);flex-wrap:wrap">
+              <div style="width:72px;height:72px;background:linear-gradient(135deg,var(--emerald-600),var(--emerald-400));
+                border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;
+                font-family:var(--font-display);font-weight:800;font-size:var(--text-2xl);color:white;
+                box-shadow:0 4px 16px rgba(16,185,129,0.3)"
+                data-user-avatar>SA</div>
+              <div>
+                <div style="font-size:var(--text-xl);font-weight:800;font-family:var(--font-display)"
+                  data-user-name>Student</div>
+                <div style="color:var(--accent-primary);font-weight:600;font-size:var(--text-sm)"
+                  data-user-course>Course</div>
+                <div class="badge badge-green" style="margin-top:var(--space-2)">Student</div>
+              </div>
+            </div>
+            <div id="student-profile-info" style="display:flex;flex-direction:column;gap:var(--space-3)"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ═══ SIDEBAR (RIGHT) ═══ -->
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+  <aside class="sidebar" id="main-sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-mark">GIT</div>
+        <div><div class="sidebar-logo-text">GIT</div><div class="sidebar-logo-sub">Student Portal</div></div>
+      </div>
+    </div>
+
+    <div class="sidebar-user">
+      <div class="sidebar-user-card">
+        <div class="sidebar-user-avatar" data-user-avatar>SA</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" data-user-name>Loading...</div>
+          <div class="sidebar-user-role">Student · <span data-user-course>Course</span></div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Learning</div>
+      <a class="sidebar-nav-link active" data-section="overview"><span class="sidebar-nav-link-icon">🏠</span> My Dashboard</a>
+      <a class="sidebar-nav-link" data-section="courses"><span class="sidebar-nav-link-icon">📚</span> My Courses</a>
+      <a class="sidebar-nav-link" data-section="lectures"><span class="sidebar-nav-link-icon">🎬</span> Browse Lectures</a>
+      <div class="sidebar-section-label">Account</div>
+      <a class="sidebar-nav-link" data-section="profile"><span class="sidebar-nav-link-icon">👤</span> My Profile</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-3)">
+        <span style="font-size:var(--text-xs);color:var(--text-tertiary)">Theme</span>
+        <button id="theme-btn" data-theme-btn aria-label="Toggle theme"
+          style="width:36px;height:36px;border-radius:var(--radius-md);background:var(--bg-tertiary);
+          border:1px solid var(--border-subtle);display:flex;align-items:center;
+          justify-content:center;cursor:pointer;font-size:16px;transition:all 0.2s">🌙</button>
+      </div>
+      <button id="signout-btn" class="sidebar-signout"><span>🚪</span> Sign Out</button>
+    </div>
+  </aside>
+</div>
+
+<!-- Video Player Modal -->
+<div class="modal-overlay" id="modal-player">
+  <div class="modal" style="max-width:760px">
+    <button class="modal-close" data-modal-close>✕</button>
+    <div class="modal-header" style="padding-bottom:var(--space-3)">
+      <h2 class="modal-title" style="font-size:var(--text-lg)">Lecture</h2>
+    </div>
+    <div class="modal-body" id="player-body"></div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="../js/app.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/student-dashboard.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // ── Apply saved theme ──
+  const saved = localStorage.getItem('git-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  const themeBtn = document.getElementById('theme-btn');
+  if (themeBtn) themeBtn.textContent = saved === 'dark' ? '☀️' : '🌙';
+
+  // ── Avatar → Sidebar Toggle ──
+  const avatarBtn = document.getElementById('avatar-toggle-btn');
+  const sidebar   = document.getElementById('main-sidebar');
+  const backdrop  = document.getElementById('sidebar-backdrop');
+
+  const openSidebar  = () => { sidebar?.classList.add('mobile-open'); backdrop?.classList.add('show'); document.body.style.overflow='hidden'; };
+  const closeSidebar = () => { sidebar?.classList.remove('mobile-open'); backdrop?.classList.remove('show'); document.body.style.overflow=''; };
+
+  avatarBtn?.addEventListener('click', () => sidebar?.classList.contains('mobile-open') ? closeSidebar() : openSidebar());
+  backdrop?.addEventListener('click', closeSidebar);
+
+  // ── Profile Info ──
+  setTimeout(() => {
+    // Sync courses tab
+    const src  = document.getElementById('enrolled-courses');
+    const dest = document.getElementById('enrolled-courses-2');
+    if (src && dest) dest.innerHTML = src.innerHTML;
+
+    const u = Auth.getSession();
+    if (!u) return;
+    const info = document.getElementById('student-profile-info');
+    if (info) {
+      const fields = [
+        ['Full Name','👤',`${u.firstName} ${u.lastName}`],
+        ["Father's Name",'👨',u.fatherName||'—'],
+        ['Email','✉️',u.email],
+        ['Phone','📞',u.phone||'—'],
+        ['Gender','⚧',u.gender||'—'],
+        ['Enrolled Course','📚',u.course||'—'],
+        ['Member Since','🗓️',new Date(u.createdAt).toLocaleDateString('en-PK',{year:'numeric',month:'long',day:'numeric'})],
+      ];
+      info.innerHTML = fields.map(([label,icon,val]) => `
+        <div style="display:flex;gap:var(--space-3);padding:var(--space-3) var(--space-4);
+          background:var(--bg-secondary);border-radius:var(--radius-lg)">
+          <span style="font-size:16px">${icon}</span>
+          <div>
+            <div style="font-size:10px;color:var(--text-tertiary);font-weight:700;
+              text-transform:uppercase;letter-spacing:0.08em">${label}</div>
+            <div style="font-weight:600;color:var(--text-primary);margin-top:2px;
+              font-size:var(--text-sm)">${val}</div>
+          </div>
+        </div>`).join('');
+    }
+  }, 500);
+});
+</script>
+</body>
+</html>

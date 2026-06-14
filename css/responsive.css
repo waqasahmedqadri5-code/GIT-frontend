@@ -1,0 +1,162 @@
+/* ===========================
+   GIT – Responsive Polish & Print
+   =========================== */
+
+/* ── Extra Breakpoint Overrides ── */
+
+/* 1440px+ Ultra Wide */
+@media (min-width: 1440px) {
+  :root { --max-width: 1360px; }
+  .hero-title { font-size: 5.2rem; }
+}
+
+/* 1280px Laptop */
+@media (min-width: 1280px) {
+  .features-grid { grid-template-columns: repeat(3, 1fr); }
+  .courses-grid  { grid-template-columns: repeat(3, 1fr); }
+  .teachers-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* 1024px Tablet Landscape */
+@media (max-width: 1024px) {
+  .hero-layout { gap: var(--space-10); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-10); }
+  .cta-buttons { flex-direction: column; align-items: center; }
+}
+
+/* 768px Tablet Portrait */
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 64px;
+    --space-20: 4rem;
+    --space-32: 6rem;
+  }
+
+  .hero-layout { padding-block: var(--space-12); }
+  .hero-title  { letter-spacing: -0.03em; }
+  .hero-stats  { gap: var(--space-4); }
+
+  .roles-grid    { gap: var(--space-4); }
+  .role-card     { padding: var(--space-8) var(--space-6); }
+
+  .features-grid { grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+  .feature-card  { padding: var(--space-6); }
+
+  .teachers-grid { grid-template-columns: 1fr 1fr; }
+
+  .testimonial-card { padding: var(--space-7); }
+
+  .footer-grid { grid-template-columns: 1fr; gap: var(--space-8); }
+  .footer-brand-desc { max-width: 100%; }
+
+  .modal { max-width: 100%; margin: var(--space-4); border-radius: var(--radius-xl); }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* 640px Mobile Landscape */
+@media (max-width: 640px) {
+  .courses-grid { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
+  .teachers-grid { grid-template-columns: 1fr; }
+
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { text-align: center; }
+
+  .section-header h2 { font-size: var(--text-2xl); }
+  .section-header p  { font-size: var(--text-base); }
+
+  .testimonial-quote::before { font-size: 3.5rem; }
+  .testimonial-card { padding: var(--space-6); }
+
+  .cta-title    { font-size: var(--text-3xl); }
+  .cta-subtitle { font-size: var(--text-base); }
+  .cta-buttons  { gap: var(--space-3); }
+
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-bottom-links { justify-content: center; gap: var(--space-4); }
+}
+
+/* 400px Small Mobile */
+@media (max-width: 400px) {
+  :root { --space-6: 1.25rem; }
+
+  .hero-badge  { font-size: 10px; }
+  .hero-title  { font-size: 2rem; }
+  .hero-stat-value { font-size: var(--text-xl); }
+
+  .course-card-header { min-height: 100px; }
+  .course-card-abbr { font-size: var(--text-xl); }
+
+  .nav-logo-text { display: none; }
+
+  .modal-body { padding: var(--space-4); }
+  .modal-header { padding: var(--space-5) var(--space-4) 0; }
+  .modal-tabs { margin-inline: var(--space-4); }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal, .reveal-left, .reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  #cursor-glow { display: none !important; }
+}
+
+/* ── High Contrast ── */
+@media (prefers-contrast: high) {
+  :root {
+    --border-subtle:  #94a3b8;
+    --border-default: #64748b;
+    --text-tertiary:  var(--text-secondary);
+  }
+  .btn-primary { outline: 2px solid currentColor; }
+}
+
+/* ── Print ── */
+@media print {
+  #navbar,
+  #splash-loader,
+  .nav-mobile-drawer,
+  .modal-overlay,
+  #toast-container,
+  .hero-orb,
+  .hero-bg,
+  .cta-section,
+  footer,
+  .btn {
+    display: none !important;
+  }
+
+  body {
+    color: #000;
+    background: #fff;
+    font-size: 12pt;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 2cm 0 1cm;
+    page-break-after: avoid;
+  }
+
+  .hero-title { font-size: 24pt; }
+  .section    { padding: 1cm 0; }
+  .card       { box-shadow: none; border: 1px solid #ccc; }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 9pt;
+    color: #666;
+  }
+
+  a[href^='#']::after,
+  a[href^='javascript']::after {
+    content: '';
+  }
+}

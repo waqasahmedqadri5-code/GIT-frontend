@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon-v2.svg">
+  <title>404 – Page Not Found | GIT</title>
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <style>
+    body { min-height: 100svh; display: flex; align-items: center; justify-content: center; background: var(--bg-primary); }
+    .error-page {
+      text-align: center;
+      padding: var(--space-12) var(--space-6);
+      max-width: 520px;
+      margin-inline: auto;
+    }
+    .error-code {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 20vw, 10rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      background: linear-gradient(135deg, var(--emerald-500), var(--emerald-300), #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-4);
+    }
+    .error-title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 800;
+      margin-bottom: var(--space-4);
+    }
+    .error-desc {
+      color: var(--text-secondary);
+      line-height: var(--leading-relaxed);
+      margin-bottom: var(--space-8);
+    }
+    .error-actions {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .error-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-10);
+      text-decoration: none;
+    }
+    .error-logo-mark {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--emerald-600), var(--emerald-400));
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 800; font-size: 14px; color: white;
+    }
+    .error-logo-name {
+      font-family: var(--font-display);
+      font-weight: 800; font-size: var(--text-base); color: var(--text-primary);
+    }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3) var(--space-6); border-radius: var(--radius-md); font-weight: 600; font-size: var(--text-sm); transition: all 250ms; cursor: pointer; border: none; text-decoration: none; }
+    .btn-primary { background: linear-gradient(135deg, var(--emerald-600), var(--emerald-500)); color: white; box-shadow: 0 4px 14px rgba(16,185,129,0.35); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(16,185,129,0.45); }
+    .btn-secondary { background: var(--bg-card); color: var(--text-primary); border: 1.5px solid var(--border-default); }
+    .btn-secondary:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+    .floating-emoji {
+      font-size: 80px;
+      display: block;
+      margin-bottom: var(--space-6);
+      animation: floatEmoji 3s ease-in-out infinite;
+    }
+    @keyframes floatEmoji {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-16px) rotate(5deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="error-page">
+    <a href="index.html" class="error-logo">
+      <div class="error-logo-mark">GIT</div>
+      <div class="error-logo-name">Green Institute of Technology</div>
+    </a>
+    <span class="floating-emoji">🔍</span>
+    <div class="error-code">404</div>
+    <h1 class="error-title">Page Not Found</h1>
+    <p class="error-desc">
+      Oops! The page you're looking for seems to have taken a day off. Maybe it's learning a new course? Let's get you back on track.
+    </p>
+    <div class="error-actions">
+      <a href="index.html" class="btn btn-primary">🏠 Go to Homepage</a>
+      <a href="index.html#courses" class="btn btn-secondary">📚 Browse Courses</a>
+    </div>
+    <p style="margin-top:var(--space-8);font-size:var(--text-sm);color:var(--text-tertiary)">
+      Still lost? <a href="pages/contact.html" style="color:var(--accent-primary);font-weight:600">Contact us</a> and we'll help you find what you need.
+    </p>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon-v2.svg">
+  <title>Teacher Dashboard – GIT</title>
+  <link rel="stylesheet" href="../assets/fonts/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    /* 3 lines button hata do */
+    .topbar-menu-btn { display: none !important; }
+
+    /* Avatar toggle button */
+    .topbar-avatar-btn {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--emerald-600), var(--emerald-400));
+      border-radius: var(--radius-full);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 14px; color: white;
+      cursor: pointer; border: none;
+      box-shadow: 0 2px 8px rgba(16,185,129,0.35);
+      transition: all 0.2s; flex-shrink: 0;
+    }
+    .topbar-avatar-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 4px 14px rgba(16,185,129,0.45);
+    }
+
+    /* ── Responsive Fixes ── */
+
+    /* Tablet 768px - 1024px */
+    @media (max-width: 1024px) {
+      .dashboard-main { margin-right: 0 !important; }
+      .topbar-search { max-width: 220px; }
+    }
+
+    /* Mobile 480px - 768px */
+    @media (max-width: 768px) {
+      .dashboard-content { padding: var(--space-4) var(--space-3) !important; }
+      .stats-grid { grid-template-columns: 1fr 1fr !important; gap: var(--space-3) !important; }
+      .stat-card { padding: var(--space-4) !important; }
+      .stat-card-value { font-size: var(--text-2xl) !important; }
+      .topbar-search { display: none !important; }
+      .panel-body { padding: var(--space-4) !important; }
+      .lecture-form { gap: var(--space-4) !important; }
+      .form-row { grid-template-columns: 1fr !important; }
+      .panel-header { flex-wrap: wrap; gap: var(--space-2); }
+      .lecture-item { flex-wrap: wrap; }
+      .lecture-item-actions { width: 100%; justify-content: flex-end; }
+      h1[style*="text-2xl"] { font-size: 1.35rem !important; }
+    }
+
+    /* Small Mobile 320px - 480px */
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr !important; }
+      .dashboard-topbar { padding: var(--space-3) var(--space-3) !important; gap: var(--space-2) !important; }
+      .topbar-title { font-size: var(--text-base) !important; }
+      .btn-primary.btn-sm, .btn-secondary.btn-sm { font-size: 11px !important; padding: var(--space-2) var(--space-3) !important; }
+      .video-preview { min-height: 160px !important; }
+    }
+
+    /* Sidebar overlay backdrop on mobile */
+    .sidebar-backdrop {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(2px);
+      z-index: calc(var(--z-sticky) - 1);
+    }
+    .sidebar-backdrop.show { display: block; }
+  </style>
+</head>
+<body>
+
+<div class="dashboard-layout" id="dash-layout">
+
+  <!-- ═══════ MAIN CONTENT (LEFT) ═══════ -->
+  <main class="dashboard-main">
+
+    <!-- Topbar -->
+    <header class="dashboard-topbar">
+      <div class="topbar-left">
+        <!-- 3 lines button nahi hai -->
+        <div class="topbar-title" id="topbar-title">Dashboard Overview</div>
+      </div>
+
+      <!-- Search - tablet pe hide hoga -->
+      <div class="topbar-search search-bar-wrapper">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input id="lecture-search" type="text" class="search-input"
+            placeholder="Search lectures…" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <!-- Upload button -->
+        <button class="btn btn-primary btn-sm" onclick="TeacherDash.goSection('upload')">
+          + Upload
+        </button>
+        <!-- Avatar → sidebar toggle -->
+        <button class="topbar-avatar-btn" id="avatar-toggle-btn"
+          data-user-avatar title="Open Menu">AA</button>
+      </div>
+    </header>
+
+    <div class="dashboard-content">
+
+      <!-- ── OVERVIEW ── -->
+      <div class="dash-section" data-section-name="overview">
+        <div style="margin-bottom:var(--space-6)">
+          <h1 style="font-size:clamp(1.25rem,3vw,1.75rem);font-weight:800;font-family:var(--font-display)">
+            Good morning, <span data-user-name style="color:var(--accent-primary)">Teacher</span> 👋
+          </h1>
+          <p style="color:var(--text-secondary);margin-top:var(--space-1);font-size:var(--text-sm)">
+            Here's what's happening with your courses today.
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-card-icon">🎬</div>
+              <div class="stat-card-trend up">Active</div>
+            </div>
+            <div class="stat-card-value" id="stat-lectures">0</div>
+            <div class="stat-card-label">Total Lectures</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header"><div class="stat-card-icon">📚</div></div>
+            <div class="stat-card-value" id="stat-courses">0</div>
+            <div class="stat-card-label">Active Courses</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-card-icon">👥</div>
+              <div class="stat-card-trend up">↑ 12%</div>
+            </div>
+            <div class="stat-card-value" id="stat-students">0</div>
+            <div class="stat-card-label">Students Enrolled</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-card-icon">👁️</div>
+              <div class="stat-card-trend up">↑ 8%</div>
+            </div>
+            <div class="stat-card-value" id="stat-views">0</div>
+            <div class="stat-card-label">Total Views</div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="dashboard-panel">
+          <div class="panel-header">
+            <div class="panel-title">⚡ Quick Actions</div>
+          </div>
+          <div class="panel-body"
+            style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-3)">
+            <button class="btn btn-primary" style="padding:var(--space-4)"
+              onclick="TeacherDash.goSection('upload')">
+              📤 Upload Lecture
+            </button>
+            <button class="btn btn-secondary" style="padding:var(--space-4)"
+              onclick="TeacherDash.goSection('lectures')">
+              🎬 My Lectures
+            </button>
+            <button class="btn btn-secondary" style="padding:var(--space-4)"
+              onclick="TeacherDash.goSection('profile')">
+              👤 My Profile
+            </button>
+          </div>
+        </div>
+
+        <!-- Recent Lectures -->
+        <div class="dashboard-panel">
+          <div class="panel-header">
+            <div class="panel-title">🎬 Recent Lectures</div>
+            <button class="btn btn-ghost btn-sm"
+              onclick="TeacherDash.goSection('lectures')">View all →</button>
+          </div>
+          <div class="panel-body">
+            <div class="lecture-list" id="lectures-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── UPLOAD LECTURE ── -->
+      <div class="dash-section" data-section-name="upload" style="display:none">
+        <div style="margin-bottom:var(--space-5)">
+          <h1 style="font-size:clamp(1.25rem,3vw,1.75rem);font-weight:800;font-family:var(--font-display)">
+            Upload a Lecture 📤
+          </h1>
+          <p style="color:var(--text-secondary);margin-top:var(--space-1);font-size:var(--text-sm)">
+            Share your knowledge with students.
+          </p>
+        </div>
+
+        <div class="dashboard-panel">
+          <div class="panel-body">
+            <form id="lecture-upload-form" class="lecture-form" novalidate>
+              <div id="video-preview-area" class="video-preview">
+                <span class="video-preview-icon">▶️</span>
+                <span>Paste a YouTube URL below to preview</span>
+              </div>
+
+              <div class="input-group">
+                <label>Lecture Title *</label>
+                <input name="title" type="text" class="input-field"
+                  placeholder="e.g. Introduction to Python Variables"
+                  data-validate="required">
+              </div>
+
+              <div class="input-group">
+                <label>YouTube Video URL *</label>
+                <input name="videoUrl" type="url" class="input-field"
+                  placeholder="https://www.youtube.com/watch?v=..."
+                  data-validate="required">
+              </div>
+
+              <div class="input-group">
+                <label>Course *</label>
+                <select name="course" class="input-field" data-validate="required">
+                  <option value="">Select a course</option>
+                  <option value="GCP">GCP – Green Certified Programmer</option>
+                  <option value="CIT">CIT – Certificate in IT</option>
+                  <option value="CCNA">CCNA – Cisco Network Associate</option>
+                  <option value="ADSE">ADSE – Diploma in Software Eng.</option>
+                  <option value="DITA">DITA – Diploma in IT Applications</option>
+                  <option value="GD">GD – Graphic Designing</option>
+                  <option value="SEO">SEO – Search Engine Optimization</option>
+                  <option value="AI">AI – Artificial Intelligence</option>
+                  <option value="ML">ML – Machine Learning</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label>Lecture Description *</label>
+                <textarea name="description" class="input-field" rows="3"
+                  placeholder="What will students learn in this lecture?"
+                  data-validate="required" style="resize:vertical"></textarea>
+              </div>
+
+              <div class="input-group">
+                <label>Lecture Summary (Optional)</label>
+                <textarea name="summary" class="input-field" rows="2"
+                  placeholder="Brief summary…" style="resize:vertical"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg"
+                style="align-self:flex-start;min-width:180px">
+                Upload Lecture 📤
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── MY LECTURES ── -->
+      <div class="dash-section" data-section-name="lectures" style="display:none">
+        <div style="display:flex;align-items:center;justify-content:space-between;
+          margin-bottom:var(--space-5);flex-wrap:wrap;gap:var(--space-3)">
+          <div>
+            <h1 style="font-size:clamp(1.25rem,3vw,1.75rem);font-weight:800;font-family:var(--font-display)">
+              My Lectures 🎬
+            </h1>
+            <p style="color:var(--text-secondary);margin-top:var(--space-1);font-size:var(--text-sm)">
+              Manage, edit, and delete your lectures.
+            </p>
+          </div>
+          <button class="btn btn-primary btn-sm"
+            onclick="TeacherDash.goSection('upload')">+ Upload New</button>
+        </div>
+
+        <div class="dashboard-panel">
+          <div class="panel-header">
+            <div class="panel-title">All Lectures</div>
+            <div class="search-bar-wrapper" style="max-width:240px;margin:0">
+              <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input id="lectures-search-panel" type="text" class="search-input"
+                  placeholder="Search…"
+                  style="padding-block:var(--space-2);font-size:var(--text-sm)"
+                  oninput="TeacherDash.renderLectureList(this.value)">
+              </div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="lecture-list" id="lectures-list-panel"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PROFILE ── -->
+      <div class="dash-section" data-section-name="profile" style="display:none">
+        <div style="margin-bottom:var(--space-5)">
+          <h1 style="font-size:clamp(1.25rem,3vw,1.75rem);font-weight:800;font-family:var(--font-display)">
+            My Profile 👤
+          </h1>
+        </div>
+        <div class="dashboard-panel" style="max-width:560px">
+          <div class="panel-body">
+            <div style="display:flex;align-items:center;gap:var(--space-4);
+              margin-bottom:var(--space-6);padding-bottom:var(--space-6);
+              border-bottom:1px solid var(--border-subtle);flex-wrap:wrap">
+              <div style="width:72px;height:72px;background:linear-gradient(135deg,var(--emerald-600),var(--emerald-400));
+                border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;
+                font-family:var(--font-display);font-weight:800;font-size:var(--text-2xl);color:white;
+                box-shadow:0 4px 16px rgba(16,185,129,0.3);flex-shrink:0"
+                data-user-avatar>AK</div>
+              <div>
+                <div style="font-size:var(--text-xl);font-weight:800;font-family:var(--font-display)"
+                  data-user-name>Teacher Name</div>
+                <div style="color:var(--accent-primary);font-weight:600;font-size:var(--text-sm)"
+                  data-user-specialization>Specialization</div>
+                <div class="badge badge-green" style="margin-top:var(--space-2)">Teacher</div>
+              </div>
+            </div>
+            <div id="profile-info"
+              style="display:flex;flex-direction:column;gap:var(--space-3)"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /dashboard-content -->
+  </main>
+
+  <!-- ═══════ SIDEBAR (RIGHT) ═══════ -->
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+  <aside class="sidebar" id="main-sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-mark">GIT</div>
+        <div>
+          <div class="sidebar-logo-text">GIT</div>
+          <div class="sidebar-logo-sub">Teacher Portal</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-user">
+      <div class="sidebar-user-card">
+        <div class="sidebar-user-avatar" data-user-avatar>AK</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" data-user-name>Loading...</div>
+          <div class="sidebar-user-role">
+            Teacher · <span data-user-specialization>Instructor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Main</div>
+      <a class="sidebar-nav-link active" data-section="overview">
+        <span class="sidebar-nav-link-icon">📊</span> Overview
+      </a>
+      <a class="sidebar-nav-link" data-section="upload">
+        <span class="sidebar-nav-link-icon">📤</span> Upload Lecture
+      </a>
+      <a class="sidebar-nav-link" data-section="lectures">
+        <span class="sidebar-nav-link-icon">🎬</span> My Lectures
+      </a>
+
+      <div class="sidebar-section-label">Account</div>
+      <a class="sidebar-nav-link" data-section="profile">
+        <span class="sidebar-nav-link-icon">👤</span> My Profile
+      </a>
+      <!-- Back to Home hata diya -->
+    </nav>
+
+    <div class="sidebar-footer">
+      <div style="display:flex;align-items:center;justify-content:space-between;
+        margin-bottom:var(--space-3)">
+        <span style="font-size:var(--text-xs);color:var(--text-tertiary)">Theme</span>
+        <button id="theme-btn" aria-label="Toggle theme"
+          style="width:36px;height:36px;border-radius:var(--radius-md);
+          background:var(--bg-tertiary);border:1px solid var(--border-subtle);
+          display:flex;align-items:center;justify-content:center;
+          cursor:pointer;font-size:16px;transition:all 0.2s">
+          🌙
+        </button>
+      </div>
+      <button id="signout-btn" class="sidebar-signout">
+        <span>🚪</span> Sign Out
+      </button>
+    </div>
+  </aside>
+
+</div><!-- /dashboard-layout -->
+
+<div id="toast-container"></div>
+
+<script src="../js/app.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/teacher-dashboard.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ── Theme ──
+  const saved = localStorage.getItem('git-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  const themeBtn = document.getElementById('theme-btn');
+  if (themeBtn) {
+    themeBtn.textContent = saved === 'dark' ? '☀️' : '🌙';
+    themeBtn.addEventListener('click', () => {
+      const cur  = document.documentElement.getAttribute('data-theme');
+      const next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('git-theme', next);
+      themeBtn.textContent = next === 'dark' ? '☀️' : '🌙';
+    });
+  }
+
+  // ── Avatar → Sidebar Toggle ──
+  const avatarBtn  = document.getElementById('avatar-toggle-btn');
+  const sidebar    = document.getElementById('main-sidebar');
+  const backdrop   = document.getElementById('sidebar-backdrop');
+
+  function openSidebar()  {
+    sidebar?.classList.add('mobile-open');
+    backdrop?.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar() {
+    sidebar?.classList.remove('mobile-open');
+    backdrop?.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  avatarBtn?.addEventListener('click', () => {
+    sidebar?.classList.contains('mobile-open') ? closeSidebar() : openSidebar();
+  });
+
+  // Backdrop click → band karo
+  backdrop?.addEventListener('click', closeSidebar);
+
+  // Sidebar nav links click → mobile pe band karo
+  sidebar?.querySelectorAll('.sidebar-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1024) closeSidebar();
+    });
+  });
+
+  // Lecture list sync
+  const origRender = TeacherDash.renderLectureList.bind(TeacherDash);
+  TeacherDash.renderLectureList = function(q = '') {
+    origRender(q);
+    const panel = document.getElementById('lectures-list-panel');
+    if (panel) panel.innerHTML = document.getElementById('lectures-list')?.innerHTML || '';
+  };
+
+  // goSection helper
+  TeacherDash.goSection = function(name) {
+    TeacherDash.showSection(name);
+    document.querySelectorAll('.sidebar-nav-link').forEach(l => l.classList.remove('active'));
+    const link = document.querySelector(`[data-section="${name}"]`);
+    if (link) link.classList.add('active');
+    if (window.innerWidth <= 1024) closeSidebar();
+  };
+
+  // Profile info
+  setTimeout(() => {
+    const u = Auth.getSession();
+    if (!u) return;
+
+    // Avatar update
+    document.querySelectorAll('[data-user-avatar]').forEach(el => {
+      el.textContent = u.avatar || (u.firstName?.[0] || 'T');
+    });
+
+    const info = document.getElementById('profile-info');
+    if (info) {
+      const fields = [
+        ['Email',          '✉️', u.email],
+        ['Phone',          '📞', u.phone || '—'],
+        ['Qualification',  '🎓', u.qualification || '—'],
+        ['Specialization', '💡', u.specialization || '—'],
+        ['Member Since',   '🗓️', new Date(u.createdAt).toLocaleDateString('en-PK',
+          {year:'numeric', month:'long', day:'numeric'})],
+      ];
+      info.innerHTML = fields.map(([label, icon, val]) => `
+        <div style="display:flex;gap:var(--space-3);padding:var(--space-3) var(--space-4);
+          background:var(--bg-secondary);border-radius:var(--radius-lg)">
+          <span style="font-size:16px">${icon}</span>
+          <div>
+            <div style="font-size:10px;color:var(--text-tertiary);font-weight:700;
+              text-transform:uppercase;letter-spacing:0.08em">${label}</div>
+            <div style="font-weight:600;color:var(--text-primary);margin-top:2px;
+              font-size:var(--text-sm)">${val}</div>
+          </div>
+        </div>`).join('');
+    }
+  }, 300);
+
+});
+</script>
+</body>
+</html>

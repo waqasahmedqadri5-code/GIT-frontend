@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meet GIT's world-class faculty – industry professionals bringing real experience into the classroom.">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon-v2.svg">
+  <title>Our Teachers – GIT</title>
+  <meta name="theme-color" content="#059669">
+  <link rel="stylesheet" href="../assets/fonts/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/sections.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    .page-hero {
+      padding-top: calc(var(--nav-height) + var(--space-20));
+      padding-bottom: var(--space-20);
+      background: linear-gradient(160deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(16,185,129,0.06), transparent);
+      pointer-events: none;
+    }
+
+    /* Teacher Detail Card */
+    .teacher-detail-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      transition: all var(--duration-base) var(--ease-out-expo);
+      display: flex;
+      flex-direction: column;
+    }
+    .teacher-detail-card:hover {
+      box-shadow: var(--shadow-xl);
+      transform: translateY(-4px);
+      border-color: var(--border-default);
+    }
+    .teacher-card-top {
+      padding: var(--space-8);
+      background: linear-gradient(135deg, var(--emerald-800), var(--emerald-600));
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+    .teacher-card-top::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -20%;
+      width: 70%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 60%);
+    }
+    .teacher-avatar-lg {
+      width: 88px;
+      height: 88px;
+      border-radius: var(--radius-full);
+      background: rgba(255,255,255,0.2);
+      border: 3px solid rgba(255,255,255,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: var(--text-2xl);
+      color: white;
+      margin: 0 auto var(--space-4);
+      position: relative;
+      z-index: 1;
+    }
+    .teacher-card-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: var(--text-xl);
+      color: white;
+      margin-bottom: var(--space-1);
+      position: relative;
+      z-index: 1;
+    }
+    .teacher-card-subject {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.8);
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+    .teacher-card-body {
+      padding: var(--space-6);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .teacher-qualification {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+    }
+    .teacher-stat-row {
+      display: flex;
+      gap: var(--space-4);
+    }
+    .teacher-stat {
+      flex: 1;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-3);
+      text-align: center;
+    }
+    .teacher-stat-val {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 800;
+      color: var(--accent-primary);
+    }
+    .teacher-stat-lbl {
+      font-size: 10px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+    .teacher-courses-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+    .teacher-course-tag {
+      font-size: 11px;
+      padding: 3px var(--space-3);
+      background: var(--accent-light);
+      color: var(--emerald-700);
+      border-radius: var(--radius-full);
+      font-weight: 600;
+    }
+    [data-theme="dark"] .teacher-course-tag {
+      background: rgba(16,185,129,0.12);
+      color: var(--emerald-400);
+    }
+
+    /* Join CTA */
+    .join-teacher-banner {
+      background: linear-gradient(135deg, var(--emerald-900), var(--emerald-700));
+      border-radius: var(--radius-2xl);
+      padding: var(--space-12) var(--space-10);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .join-teacher-banner::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: -10%;
+      width: 50%;
+      height: 150%;
+      background: radial-gradient(circle, rgba(255,255,255,0.06), transparent 60%);
+    }
+    .join-teacher-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      right: -10%;
+      width: 50%;
+      height: 150%;
+      background: radial-gradient(circle, rgba(255,255,255,0.04), transparent 60%);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container navbar-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-mark">GIT</div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">Green Institute</span>
+        <span class="nav-logo-sub">of Technology</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html"           class="nav-link">Home</a>
+      <a href="../index.html#courses"   class="nav-link">Courses</a>
+      <a href="teacher.html"           class="nav-link active">Teachers</a>
+      <a href="about.html"              class="nav-link">About</a>
+      <a href="contact.html"            class="nav-link">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <span class="icon-dark">🌙</span><span class="icon-light">☀️</span>
+      </button>
+      <button class="btn btn-secondary btn-sm" onclick="window.location.href='../index.html'">Sign In</button>
+      <button class="btn btn-primary btn-sm" onclick="window.location.href='../index.html'">Join GIT</button>
+      <button class="nav-menu-btn">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="nav-mobile-drawer">
+  <nav class="mobile-nav-links">
+    <a href="../index.html"          class="mobile-nav-link">🏠 Home</a>
+    <a href="../index.html#courses"  class="mobile-nav-link">📚 Courses</a>
+    <a href="teachers.html"          class="mobile-nav-link active">👨‍🏫 Teachers</a>
+    <a href="about.html"             class="mobile-nav-link">ℹ️ About</a>
+    <a href="contact.html"           class="mobile-nav-link">📞 Contact</a>
+  </nav>
+  <div class="mobile-nav-actions">
+    <button class="btn btn-primary" onclick="window.location.href='../index.html'">Join GIT</button>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="container" style="text-align:center; position:relative">
+    <div class="eyebrow reveal">Our Faculty</div>
+    <h1 class="text-display-lg reveal" style="max-width:680px;margin-inline:auto;margin-bottom:var(--space-5)">
+      Learn from the <span class="text-gradient-warm">Best in the Industry</span>
+    </h1>
+    <p class="text-body-lg reveal" style="color:var(--text-secondary);max-width:580px;margin-inline:auto">
+      Every GIT instructor is an active industry professional with 5+ years of real-world experience — not just academics.
+    </p>
+
+    <!-- Quick stats row -->
+    <div class="reveal" style="display:flex;justify-content:center;gap:var(--space-10);margin-top:var(--space-10);flex-wrap:wrap">
+      <div style="text-align:center">
+        <div style="font-family:var(--font-display);font-size:var(--text-3xl);font-weight:800;color:var(--accent-primary)">20+</div>
+        <div style="font-size:var(--text-sm);color:var(--text-tertiary);font-weight:600;text-transform:uppercase;letter-spacing:0.08em">Faculty Members</div>
+      </div>
+      <div style="width:1px;height:48px;background:var(--border-subtle);align-self:center"></div>
+      <div style="text-align:center">
+        <div style="font-family:var(--font-display);font-size:var(--text-3xl);font-weight:800;color:var(--accent-primary)">150+</div>
+        <div style="font-size:var(--text-sm);color:var(--text-tertiary);font-weight:600;text-transform:uppercase;letter-spacing:0.08em">Years Combined XP</div>
+      </div>
+      <div style="width:1px;height:48px;background:var(--border-subtle);align-self:center"></div>
+      <div style="text-align:center">
+        <div style="font-family:var(--font-display);font-size:var(--text-3xl);font-weight:800;color:var(--accent-primary)">4.9★</div>
+        <div style="font-size:var(--text-sm);color:var(--text-tertiary);font-weight:600;text-transform:uppercase;letter-spacing:0.08em">Avg. Rating</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TEACHERS GRID -->
+<section class="section" style="background:var(--bg-primary)">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:var(--space-12)">
+      <div class="eyebrow">Meet the Team</div>
+      <h2 class="reveal">Featured Instructors</h2>
+      <p class="reveal">Professionals who've worked at top companies, earned top certifications, and now share their expertise with you.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--space-6)" class="stagger">
+
+      <!-- Teacher 1 -->
+      <div class="teacher-detail-card reveal">
+        <div class="teacher-card-top">
+          <div class="teacher-avatar-lg">AK</div>
+          <div class="teacher-card-name">Ahmed Khan</div>
+          <div class="teacher-card-subject">Senior Full-Stack Developer</div>
+        </div>
+        <div class="teacher-card-body">
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:var(--leading-relaxed)">8 years building scalable web applications at top Pakistani tech companies. Specialises in React, Node.js, and cloud architecture. Helped 300+ students land jobs.</p>
+          <div class="teacher-qualification"><span>🎓</span> M.Sc Computer Science – FAST NUCES</div>
+          <div class="teacher-qualification"><span>🏆</span> AWS Certified Solutions Architect</div>
+          <div class="teacher-stat-row">
+            <div class="teacher-stat"><div class="teacher-stat-val">8</div><div class="teacher-stat-lbl">Years XP</div></div>
+            <div class="teacher-stat"><div class="teacher-stat-val">320</div><div class="teacher-stat-lbl">Students</div></div>
+            <div class="teacher-stat"><div class="teacher-stat-val">4.9★</div><div class="teacher-stat-lbl">Rating</div></div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--space-2)">Teaches</div>
+            <div class="teacher-courses-list">
+              <span class="teacher-course-tag">GCP</span>
+              <span class="teacher-course-tag">ADSE</span>
+              <span class="teacher-course-tag">Web Dev</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teacher 2 -->
+      <div class="teacher-detail-card reveal">
+        <div class="teacher-card-top" style="background:linear-gradient(135deg,#1e1b4b,#4c1d95)">
+          <div class="teacher-avatar-lg">SR</div>
+          <div class="teacher-card-name">Dr. Sara Rahim</div>
+          <div class="teacher-card-subject">AI Research Scientist</div>
+        </div>
+        <div class="teacher-card-body">
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:var(--leading-relaxed)">PhD in Computer Science specialising in Neural Networks. Published researcher in IEEE & ACM. Former Google AI team member. Passionate about making AI accessible to all students.</p>
+          <div class="teacher-qualification"><span>🎓</span> PhD Computer Science – LUMS</div>
+          <div class="teacher-qualification"><span>🏆</span> Google AI Certificate · IEEE Member</div>
+          <div class="teacher-stat-row">
+            <div class="teacher-stat"><div class="teacher-stat-val">10</div><div class="teacher-stat-lbl">Years XP</div></div>
+            <div class="teacher-stat"><div class="teacher-stat-val">280</div><div class="teacher-stat-lbl">Students</div></div>
+            <div class="teacher-stat"><div class="teacher-stat-val">5.0★</div><div class="teacher-stat-lbl">Rating</div></div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--space-2)">Teaches</div>
+            <div class="teacher-courses-list">
+              <span class="teacher-course-tag">AI</span>
+              <span class="teacher-course-tag">ML</span>
+              <span class="teacher-course-tag">Deep Learning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teacher 3 -->
+      <div class="teacher-detail-card reveal">
+        <div class="teacher-card-top" style="background:linear-gradient(135deg,#1e3a5f,#0891b2)">
+          <div class="teacher-avatar-lg">MZ</div>
+          <div class="teacher-card-name">Muhammad Zubair</div>
+          <div class="teacher-card-subject">Network Security Engineer</div>
+        </div>
+        <div class="teacher-card-body">
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:var(--leading-relaxed)">Cisco Certified Instructor (CCSI #37254) with 12 years administering enterprise networks. Certified Ethical Hacker. Has trained 500+ network professionals across Pakistan.</p>
+          <div class="teacher-qualification"><span>🎓</span> B.E Telecommunications – NED University</div>
+          <div class="teacher-qualification"><span>🏆</span> CCSI · CCNP · CEH · CompTIA Security+</div>
+          <div class="teacher-stat-row">
+            <div class="teacher-stat"><div class="teacher-stat-val">12</div><div class="teacher-stat-lbl">Years XP</div></div>
+            <div class="teacher-stat"><div class="teacher-stat-val">520</div><div class="teacher-stat-lbl">Students</div></div>
+            <div class="teacher-stat"><div class="teacher-stat-val">4.9★</div><div class="teacher-stat-lbl">Rating</div></div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--space-2)">Teaches</div>
+            <div class="teacher-courses-list">
+              <span class="teacher-course-tag">CCNA</span>
+              <span class="teacher-course-tag">CIT</span>
+              <span class="teacher-course-tag">Network Security</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teacher 4 -->
+      <div class="teacher-detail-card reveal">
+        <div class="teacher-card-top" style="background:linear-gradient(135deg,#7f1d1d,#e11d48)">
+          <div class="teacher-avatar-lg">FH</div>
+          <div class="teacher-card-name">Fatima Hassan</div>
+          <div class="teacher-card-subject">Creative Director & Designer</div>
+        </div>
+        <div class="teacher-card-body">
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:var(--leading-relaxed)">Award-winning graphic designer with 7 years in brand identity and digital media. Former Creative Director at Pakistan's top advertising agency. Adobe Certified Expert in Photoshop & Illustrator.</p>
+          <div class="teacher-qualification"><span>🎓</span> BFA Graphic Design – Indus Valley School</div>
+          <div class="teacher-qualification"><span>🏆</span> Adobe Certified Expert (ACE)</div>
+          <div class="teacher-stat-row">
+            <div class="teacher-stat"><div class="teacher-stat-val">7</div><div class="teacher-stat-lbl">Years XP</div></div>
+            <div class="teacher-stat"><div class="teacher-stat-val">190</div><div class="teacher-stat-lbl">Students</div></div>
+            <div class="teacher-stat"><div class="teacher-stat-val">4.8★</div><div class="teacher-stat-lbl">Rating</div></div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--space-2)">Teaches</div>
+            <div class="teacher-courses-list">
+              <span class="teacher-course-tag">GD</span>
+              <span class="teacher-course-tag">Brand Identity</span>
+              <span class="teacher-course-tag">UI/UX</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teacher 5 -->
+      <div class="teacher-detail-card reveal">
+        <div class="teacher-card-top" style="background:linear-gradient(135deg,#14532d,#16a34a)">
+          <div class="teacher-avatar-lg">BI</div>
+          <div class="teacher-card-name">Bilal Iqbal</div>
+          <div class="teacher-card-subject">SEO & Digital Marketing Strategist</div>
+        </div>
+        <div class="teacher-card-body">
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:var(--leading-relaxed)">6 years as an SEO specialist ranking hundreds of websites across 12 industries. Managed $2M+ in Google Ads budgets. Helped 50+ businesses reach the first page of Google.</p>
+          <div class="teacher-qualification"><span>🎓</span> BBA Marketing – IBA Karachi</div>
+          <div class="teacher-qualification"><span>🏆</span> Google Analytics · HubSpot · SEMrush Certified</div>
+          <div class="teacher-stat-row">
+            <div class="teacher-stat"><div class="teacher-stat-val">6</div><div class="teacher-stat-lbl">Years XP</div></div>
+            <div class="teacher-stat"><div class="teacher-stat-val">145</div><div class="teacher-stat-lbl">Students</div></div>
+            <div class="teacher-stat"><div class="teacher-stat-val">4.9★</div><div class="teacher-stat-lbl">Rating</div></div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--space-2)">Teaches</div>
+            <div class="teacher-courses-list">
+              <span class="teacher-course-tag">SEO</span>
+              <span class="teacher-course-tag">Digital Marketing</span>
+              <span class="teacher-course-tag">Content Strategy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teacher 6 -->
+      <div class="teacher-detail-card reveal">
+        <div class="teacher-card-top" style="background:linear-gradient(135deg,#78350f,#d97706)">
+          <div class="teacher-avatar-lg">NA</div>
+          <div class="teacher-card-name">Nadia Ansari</div>
+          <div class="teacher-card-subject">Data Scientist & ML Engineer</div>
+        </div>
+        <div class="teacher-card-body">
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:var(--leading-relaxed)">5 years building ML pipelines for financial services and e-commerce. Specialises in Python, Scikit-learn, TensorFlow, and data visualisation. Kaggle competitions top-10% performer.</p>
+          <div class="teacher-qualification"><span>🎓</span> M.Sc Data Science – NUST</div>
+          <div class="teacher-qualification"><span>🏆</span> TensorFlow Developer Certificate</div>
+          <div class="teacher-stat-row">
+            <div class="teacher-stat"><div class="teacher-stat-val">5</div><div class="teacher-stat-lbl">Years XP</div></div>
+            <div class="teacher-stat"><div class="teacher-stat-val">210</div><div class="teacher-stat-lbl">Students</div></div>
+            <div class="teacher-stat"><div class="teacher-stat-val">4.8★</div><div class="teacher-stat-lbl">Rating</div></div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--space-2)">Teaches</div>
+            <div class="teacher-courses-list">
+              <span class="teacher-course-tag">ML</span>
+              <span class="teacher-course-tag">Data Science</span>
+              <span class="teacher-course-tag">Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- JOIN AS TEACHER CTA -->
+<section class="section" style="background:var(--bg-secondary)">
+  <div class="container">
+    <div class="join-teacher-banner">
+      <div style="position:relative;z-index:1">
+        <div class="eyebrow reveal" style="background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9)">Join Our Faculty</div>
+        <h2 class="reveal" style="font-size:clamp(1.75rem,4vw,3rem);font-weight:800;color:white;margin:var(--space-4) 0;letter-spacing:-0.03em">
+          Are You an Industry Expert?<br>Teach at GIT.
+        </h2>
+        <p class="reveal" style="color:rgba(255,255,255,0.8);font-size:var(--text-lg);max-width:520px;margin:0 auto var(--space-8);line-height:var(--leading-relaxed)">
+          Share your expertise with the next generation. Flexible schedule, competitive pay, and the satisfaction of shaping careers.
+        </p>
+        <div class="reveal" style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-white btn-lg" onclick="window.location.href='../index.html'">
+            👨‍🏫 Apply as Teacher
+          </button>
+          <a href="contact.html" class="btn btn-outline-white btn-lg">📞 Contact Us First</a>
+        </div>
+        <div style="display:flex;gap:var(--space-8);justify-content:center;margin-top:var(--space-8);flex-wrap:wrap">
+          <div style="text-align:center;color:rgba(255,255,255,0.7);font-size:var(--text-sm)">✅ Flexible scheduling</div>
+          <div style="text-align:center;color:rgba(255,255,255,0.7);font-size:var(--text-sm)">✅ Competitive compensation</div>
+          <div style="text-align:center;color:rgba(255,255,255,0.7);font-size:var(--text-sm)">✅ Online lecture system</div>
+          <div style="text-align:center;color:rgba(255,255,255,0.7);font-size:var(--text-sm)">✅ Career development</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer mini -->
+<footer style="background:var(--neutral-950);padding:var(--space-8) 0;text-align:center;color:rgba(255,255,255,0.4);font-size:var(--text-sm)">
+  <p>© 2025 Green Institute of Technology &nbsp;·&nbsp; <a href="../index.html" style="color:var(--emerald-400)">Return to Home</a> &nbsp;·&nbsp; <a href="contact.html" style="color:var(--emerald-400)">Contact Us</a></p>
+</footer>
+
+<div id="toast-container"></div>
+<script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+/* ===========================
+   GIT – Design Tokens & Variables
+   =========================== */
+
+:root {
+  /* Brand Colors */
+  --emerald-50:  #ecfdf5;
+  --emerald-100: #d1fae5;
+  --emerald-200: #a7f3d0;
+  --emerald-300: #6ee7b7;
+  --emerald-400: #34d399;
+  --emerald-500: #10b981;
+  --emerald-600: #059669;
+  --emerald-700: #047857;
+  --emerald-800: #065f46;
+  --emerald-900: #064e3b;
+
+  /* Neutral */
+  --neutral-0:   #ffffff;
+  --neutral-50:  #f8fafc;
+  --neutral-100: #f1f5f9;
+  --neutral-200: #e2e8f0;
+  --neutral-300: #cbd5e1;
+  --neutral-400: #94a3b8;
+  --neutral-500: #64748b;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-800: #1e293b;
+  --neutral-900: #0f172a;
+  --neutral-950: #020617;
+
+  /* Semantic Light Theme */
+  --bg-primary:    #ffffff;
+  --bg-secondary:  #f8fafc;
+  --bg-tertiary:   #f1f5f9;
+  --bg-inverse:    #0f172a;
+  --bg-card:       #ffffff;
+  --bg-glass:      rgba(255,255,255,0.7);
+  --bg-overlay:    rgba(15,23,42,0.6);
+
+  --text-primary:   #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary:  #94a3b8;
+  --text-inverse:   #ffffff;
+  --text-accent:    #059669;
+
+  --border-subtle:  #e2e8f0;
+  --border-default: #cbd5e1;
+  --border-strong:  #94a3b8;
+  --border-accent:  #10b981;
+
+  --accent-primary:  #059669;
+  --accent-hover:    #047857;
+  --accent-light:    #d1fae5;
+  --accent-glow:     rgba(16,185,129,0.2);
+
+  --shadow-xs:  0 1px 2px rgba(15,23,42,0.05);
+  --shadow-sm:  0 2px 8px rgba(15,23,42,0.08);
+  --shadow-md:  0 4px 16px rgba(15,23,42,0.1);
+  --shadow-lg:  0 8px 32px rgba(15,23,42,0.12);
+  --shadow-xl:  0 16px 48px rgba(15,23,42,0.14);
+  --shadow-glow:0 0 32px rgba(16,185,129,0.25);
+
+  /* Typography */
+  --font-display: 'Syne', 'Clash Display', sans-serif;
+  --font-body:    'DM Sans', 'Plus Jakarta Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+  --text-6xl:  3.75rem;
+  --text-7xl:  4.5rem;
+
+  --leading-tight:  1.2;
+  --leading-snug:   1.35;
+  --leading-normal: 1.5;
+  --leading-relaxed:1.65;
+
+  --tracking-tight: -0.04em;
+  --tracking-snug:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-wider:  0.08em;
+
+  /* Spacing */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Radius */
+  --radius-sm:   0.375rem;
+  --radius-md:   0.625rem;
+  --radius-lg:   1rem;
+  --radius-xl:   1.5rem;
+  --radius-2xl:  2rem;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 600ms;
+
+  /* Layout */
+  --max-width: 1280px;
+  --max-width-sm: 640px;
+  --max-width-md: 768px;
+  --max-width-lg: 1024px;
+  --nav-height: 72px;
+
+  /* Z-index */
+  --z-base:    1;
+  --z-card:    10;
+  --z-sticky:  100;
+  --z-modal:   1000;
+  --z-toast:   2000;
+  --z-loader:  9999;
+}
+
+/* ── Dark Mode ── */
+[data-theme="dark"] {
+  --bg-primary:    #0a0f1a;
+  --bg-secondary:  #0f1724;
+  --bg-tertiary:   #151e2e;
+  --bg-card:       #111827;
+  --bg-glass:      rgba(15,23,42,0.8);
+  --bg-overlay:    rgba(0,0,0,0.7);
+
+  --text-primary:   #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-tertiary:  #64748b;
+  --text-inverse:   #0f172a;
+
+  --border-subtle:  rgba(255,255,255,0.06);
+  --border-default: rgba(255,255,255,0.1);
+  --border-strong:  rgba(255,255,255,0.18);
+
+  --shadow-xs:  0 1px 2px rgba(0,0,0,0.3);
+  --shadow-sm:  0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.4);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.5);
+  --shadow-xl:  0 16px 48px rgba(0,0,0,0.6);
+  --shadow-glow:0 0 40px rgba(16,185,129,0.35);
+}
